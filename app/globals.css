@@ -2,26 +2,109 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    @apply bg-vscode-bg text-vscode-text;
+    background-image: radial-gradient(circle at 50% 50%, rgba(0, 225, 255, 0.15) 0%, rgba(0, 21, 36, 0) 50%);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  .tab {
+    @apply relative px-4 py-2 border-t border-transparent hover:bg-vscode-bg-light transition-colors;
+  }
+  
+  .tab.active {
+    @apply border-t-2 border-vscode-tab-active bg-vscode-bg-light;
+  }
+  
+  .code-line {
+    @apply font-mono text-sm leading-relaxed;
+  }
+  
+  .comment {
+    @apply text-vscode-comment;
+  }
+  
+  .keyword {
+    @apply text-vscode-keyword;
+  }
+  
+  .string {
+    @apply text-vscode-string;
+  }
+  
+  .variable {
+    @apply text-vscode-variable;
+  }
+  
+  .function {
+    @apply text-vscode-function;
+  }
+  
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8;
+  }
+  
+  .project-card {
+    @apply bg-vscode-bg-light border border-vscode-border rounded-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[rgba(0,225,255,0.1)];
+  }
+  
+  .btn {
+    @apply px-4 py-2 rounded-md transition-colors font-mono text-sm;
+  }
+  
+  .btn-primary {
+    @apply bg-[rgba(0,225,255,0.2)] text-vscode-accent hover:bg-[rgba(0,225,255,0.3)];
   }
 }
