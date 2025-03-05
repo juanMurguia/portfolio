@@ -1,8 +1,9 @@
+"use client";
 export default function Hello() {
   return (
     <div className="section-container flex flex-col justify-center min-h-screen">
       <div className="max-w-3xl">
-        <p className="text-vscode-text mb-2">Hey, I'm</p>
+        <p className="text-vscode-text mb-2">Hey, I&apos;m</p>
         <h1 className="text-5xl md:text-6xl font-bold mb-4">Juan Murguia</h1>
         <div className="flex items-center mb-12">
           <span className="text-vscode-accent mr-2">&gt;</span>
@@ -13,7 +14,7 @@ export default function Hello() {
 
         <div className="space-y-4 font-mono text-sm">
           <div className="code-line">
-            <span className="comment">// my info</span>
+            <span className="comment">{"// my info"}</span>
           </div>
 
           <a
@@ -23,7 +24,7 @@ export default function Hello() {
           >
             <span className="keyword">const</span>{" "}
             <span className="variable">email</span> ={" "}
-            <span className="string">"juancruzmur@gmail.com"</span>;
+            <span className="string">&quot;juancruzmur@gmail.com&quot;</span>;
           </a>
 
           <a
@@ -33,7 +34,7 @@ export default function Hello() {
           >
             <span className="keyword">const</span>{" "}
             <span className="variable">githubLink</span> ={" "}
-            <span className="string">"github.com/juanMurguia"</span>;
+            <span className="string">&quot;github.com/juanMurguia&quot;</span>;
           </a>
 
           <a
@@ -43,7 +44,10 @@ export default function Hello() {
           >
             <span className="keyword">const</span>{" "}
             <span className="variable">linkedinPage</span> ={" "}
-            <span className="string">"linkedin.com/juan-cruz-murguia"</span>;
+            <span className="string">
+              &quot;linkedin.com/juan-cruz-murguia&quot;
+            </span>
+            ;
           </a>
         </div>
       </div>

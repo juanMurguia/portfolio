@@ -37,7 +37,7 @@ export default function Contact() {
           <h2 className="text-3xl font-bold mb-6">Get In Touch</h2>
           <div className="space-y-4 text-vscode-text mb-8">
             <p className="code-line">
-              <span className="comment">/**</span>
+              <span className="comment">{"/**"}</span>
             </p>
             <p className="code-line">
               <span className="comment"> * Send me a message!</span>
@@ -52,7 +52,7 @@ export default function Contact() {
               <span className="comment"> * to say hello? Go ahead.</span>
             </p>
             <p className="code-line">
-              <span className="comment"> */</span>
+              <span className="comment"> {"*/"}</span>
             </p>
           </div>
 

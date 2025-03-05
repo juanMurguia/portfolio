@@ -75,6 +75,7 @@ export default function Portfolio() {
                   src={item.image || "/placeholder.svg"}
                   alt={item.title}
                   fill
+                  loading="lazy"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-vscode-bg to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
@@ -88,14 +89,9 @@ export default function Portfolio() {
                     </span>
                     <h3 className="text-xl font-bold">{item.title}</h3>
                   </div>
-                  <a
-                    href={item.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-vscode-accent hover:text-vscode-accent/80 transition-colors"
-                  >
+                  <div className="text-vscode-accent hover:text-vscode-accent/80 transition-colors">
                     <ExternalLink size={16} />
-                  </a>
+                  </div>
                 </div>
 
                 <p className="text-vscode-text-muted mb-4">

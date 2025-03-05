@@ -4,7 +4,7 @@ import type React from "react";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Github, Linkedin, FileDown, Menu, X } from "lucide-react";
+import { Github, Linkedin, Menu, X } from "lucide-react";
 
 const tabs = [
   { id: "hello", label: "hello" },

@@ -12,7 +12,7 @@ export default function AboutMe() {
           <h2 className="text-3xl font-bold mb-6">About Me</h2>
           <div className="space-y-4 text-vscode-text">
             <p className="code-line">
-              <span className="comment">/**</span>
+              <span className="comment">{"/**"}</span>
             </p>
             <p className="code-line">
               <span className="comment">
@@ -43,7 +43,7 @@ export default function AboutMe() {
               <span className="comment"> * solutions.</span>
             </p>
             <p className="code-line">
-              <span className="comment"> **/</span>
+              <span className="comment"> {" */"}</span>
             </p>
           </div>
         </div>
