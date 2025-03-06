@@ -15,6 +15,8 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    setResponseMessage(null);
 
     try {
       const response = await fetch("/api/send-email", {
@@ -25,16 +27,31 @@ export default function Contact() {
         body: JSON.stringify(formData),
       });
 
-      const textResponse = await response.text();
-      const responseData = JSON.parse(textResponse);
+      const responseData = await response.json();
 
       if (response.ok) {
         setFormData({ name: "", email: "", message: "" });
+        setResponseMessage(
+          "✅ Message sent successfully! I'll get back to you soon."
+        );
       } else {
+        setResponseMessage(
+          `❌ ${
+            responseData.error || "Failed to send message. Please try again."
+          }`
+        );
         console.error("Failed to send:", responseData);
       }
     } catch (error) {
+      setResponseMessage("❌ Something went wrong. Please try again later.");
       console.error("Error submitting form:", error);
+    } finally {
+      setLoading(false);
+
+      // Optional: Clear the message after 5 seconds
+      setTimeout(() => {
+        setResponseMessage(null);
+      }, 5000);
     }
   };
 
