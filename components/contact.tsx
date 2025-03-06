@@ -1,7 +1,5 @@
 "use client";
 
-import type React from "react";
-
 import { useState } from "react";
 import { Send } from "lucide-react";
 
@@ -12,16 +10,32 @@ export default function Contact() {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [responseMessage, setResponseMessage] = useState<string | null>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add your form submission logic here
-    console.log("Form submitted:", formData);
-    alert("Thanks for your message! I'll get back to you soon.");
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-    });
+
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const textResponse = await response.text();
+      const responseData = JSON.parse(textResponse);
+
+      if (response.ok) {
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        console.error("Failed to send:", responseData);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
 
   return (
@@ -35,33 +49,16 @@ export default function Contact() {
       <div className="grid md:grid-cols-2 gap-12">
         <div>
           <h2 className="text-3xl font-bold mb-6">Get In Touch</h2>
-          <div className="space-y-4 text-vscode-text mb-8">
-            <p className="code-line">
-              <span className="comment">{"/**"}</span>
-            </p>
-            <p className="code-line">
-              <span className="comment"> * Send me a message!</span>
-            </p>
-            <p className="code-line">
-              <span className="comment">
-                {" "}
-                * Got a question or proposal, or just want
-              </span>
-            </p>
-            <p className="code-line">
-              <span className="comment"> * to say hello? Go ahead.</span>
-            </p>
-            <p className="code-line">
-              <span className="comment"> {"*/"}</span>
-            </p>
-          </div>
+          <p className="text-vscode-text mb-8">
+            <span className="comment">{"//"} Send me a message!</span>
+          </p>
 
           <div className="space-y-6 font-mono text-sm">
             <div className="flex items-start">
               <div className="w-24 text-vscode-text-muted">Email:</div>
               <a
                 href="mailto:juancruzmur@gmail.com"
-                className="text-vscode-accent hover:underline"
+                className="hover:text-vscode-accent hover:underline"
               >
                 juancruzmur@gmail.com
               </a>
@@ -94,13 +91,6 @@ export default function Contact() {
         </div>
 
         <div className="bg-vscode-bg-light border border-vscode-border rounded-md p-6">
-          <div className="mb-6">
-            <div className="code-line">
-              <span className="keyword">function</span>{" "}
-              <span className="function">sendMessage</span>() {"{"}
-            </div>
-          </div>
-
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -108,12 +98,11 @@ export default function Contact() {
                   htmlFor="name"
                   className="block text-sm font-mono mb-1 text-vscode-text-muted"
                 >
-                  name:
+                  Name:
                 </label>
                 <input
                   type="text"
                   id="name"
-                  name="name"
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -129,12 +118,11 @@ export default function Contact() {
                   htmlFor="email"
                   className="block text-sm font-mono mb-1 text-vscode-text-muted"
                 >
-                  email:
+                  Email:
                 </label>
                 <input
                   type="email"
                   id="email"
-                  name="email"
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -151,11 +139,10 @@ export default function Contact() {
                 htmlFor="message"
                 className="block text-sm font-mono mb-1 text-vscode-text-muted"
               >
-                message:
+                Message:
               </label>
               <textarea
                 id="message"
-                name="message"
                 value={formData.message}
                 onChange={(e) =>
                   setFormData({ ...formData, message: e.target.value })
@@ -171,16 +158,27 @@ export default function Contact() {
               <button
                 type="submit"
                 className="btn btn-primary flex items-center justify-center gap-2 w-full"
+                disabled={loading}
               >
-                <span>Send</span>
+                {loading ? "Sending..." : "Send"}
                 <Send size={16} />
               </button>
             </div>
           </form>
 
-          <div className="mt-4">
-            <div className="code-line">{"}"}</div>
-          </div>
+          {responseMessage && (
+            <div className="mt-4 text-center font-mono text-sm">
+              <span
+                className={
+                  responseMessage.startsWith("✅")
+                    ? "text-green-500"
+                    : "text-red-500"
+                }
+              >
+                {responseMessage}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>
