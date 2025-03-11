@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   keywords: [
     "front-end developer",
     "web developer",
-    "UI/UX",
+    "software engineer",
     "React",
     "Next.js",
     "JavaScript",

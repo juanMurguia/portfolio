@@ -1,8 +1,30 @@
 "use client";
+import Spline from "@splinetool/react-spline";
+import { useState, useEffect, Suspense } from "react";
+
 export default function Hello() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if we're on client side
+    if (typeof window !== "undefined") {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+
+      // Set initial value
+      checkMobile();
+
+      // Add resize listener
+      window.addEventListener("resize", checkMobile);
+
+      // Cleanup
+      return () => window.removeEventListener("resize", checkMobile);
+    }
+  }, []);
   return (
-    <div className="section-container flex flex-col justify-center min-h-screen">
-      <div className="max-w-3xl">
+    <div className="section-container flex flex-col md:flex-row justify-space-around h-svh w-full items-center overflow-hidden gap-4 md:gap-0">
+      <div className="w-full">
         <p className="text-vscode-text mb-2">Hey, I&apos;m</p>
         <h1 className="text-5xl md:text-6xl font-bold mb-4">Juan Murguia</h1>
         <div className="flex items-center mb-12">
@@ -49,6 +71,31 @@ export default function Hello() {
             </span>
             ;
           </a>
+        </div>
+      </div>
+      <div
+        className="scene-container"
+        style={{ overflow: "hidden", width: "100%", height: "100%" }}
+      >
+        <div
+          className="zoomed-spline"
+          style={
+            isMobile
+              ? {
+                  transform: "scale(1.2) translateY(5%)",
+                  width: "100%",
+                  height: "100%",
+                }
+              : {
+                  transform: "scale(1.12) translateX(20%) translateY(5%)",
+                  width: "100%",
+                  height: "100%",
+                }
+          }
+        >
+          <Suspense fallback={<div className="text-white">Loading...</div>}>
+            <Spline scene="https://prod.spline.design/qR9xNOFtDzaRXXh7/scene.splinecode" />
+          </Suspense>
         </div>
       </div>
     </div>
