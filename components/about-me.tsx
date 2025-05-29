@@ -15,8 +15,8 @@ export default function AboutMe() {
           About Me
         </h2>
         <p className="leading-relaxed text-vscode-text">
-          Hey! I'm a software developer focused on building fast, accessible,
-          and elegant user interfaces.
+          Hey! I&apos;ma software developer focused on building fast,
+          accessible, and elegant user interfaces.
         </p>
         <p className="leading-relaxed text-vscode-text">
           I care about clean code, good UX, and solving real problems. Currently
