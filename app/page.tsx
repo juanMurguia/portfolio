@@ -1,14 +1,13 @@
-import { Metadata } from "next";
-import Layout from "@/components/layout";
-import Hello from "@/components/hello";
 import AboutMe from "@/components/about-me";
+import Hello from "@/components/hello";
+import Layout from "@/components/layout";
 import Portfolio from "@/components/portfolio";
 import Skills from "@/components/skills";
-import Contact from "@/components/contact";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Juan Murguia | Front-end Developer",
-  description: "Front-end developer focused on design and performance",
+  title: "Juan Murguia | Software Developer",
+  description: "Software developer focused on design and performance",
 };
 
 export default function Home() {
@@ -17,7 +16,7 @@ export default function Home() {
       <div id="hello" className="min-h-screen">
         <Hello />
       </div>
-      <div id="about-me" className="min-h-screen">
+      <div id="about-me">
         <AboutMe />
       </div>
       <div id="portfolio" className="min-h-screen">
@@ -25,9 +24,6 @@ export default function Home() {
       </div>
       <div id="skills" className="min-h-screen">
         <Skills />
-      </div>
-      <div id="contact-me" className="min-h-screen">
-        <Contact />
       </div>
     </Layout>
   );

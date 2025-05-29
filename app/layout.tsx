@@ -1,7 +1,7 @@
-import type { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
-import { Inter, Fira_Code } from "next/font/google";
-import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
+import type { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
+import { Fira_Code, Inter } from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,9 +15,9 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: "Juan Murguia | Front-end Developer",
+  title: "Juan Murguia",
   description:
-    "Front-end developer focused on design and performance. Specialized in creating beautiful, responsive, and performant web applications.",
+    "Software developer focused on design and performance. Specialized in creating beautiful, responsive, and performant web applications.",
   keywords: [
     "front-end developer",
     "web developer",
@@ -33,14 +33,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "",
-    title: "Juan Murguia | Front-end Developer",
-    description: "Front-end developer focused on design and performance",
+    title: "Juan Murguia ",
+    description: "Software developer focused on design and performance",
     siteName: "Juan Murguia Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Juan Murguia | Front-end Developer",
-    description: "Front-end developer focused on design and performance",
+    title: "Juan Murguia ",
+    description: "Software developer focused on design and performance",
   },
 };
 

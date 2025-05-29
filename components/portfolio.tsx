@@ -1,22 +1,32 @@
-import Image from "next/image";
-import { ExternalLink } from "lucide-react";
-import gamingImage from "@/app/assets/gaming.webp";
-import ecommerceImage from "@/app/assets/ecommerce.webp";
 import chetalkImage from "@/app/assets/chetalk.webp";
+import ecommerceImage from "@/app/assets/ecommerce.webp";
+import gamingImage from "@/app/assets/gaming.webp";
+import proveumImage from "@/app/assets/proveum.jpg";
+import { ExternalLink } from "lucide-react";
+import Image from "next/image";
 
 const portfolioItems = [
   {
     id: 1,
-    title: "E-sports Web App",
+    title: "Proveum",
     category: "Web Application",
+    image: proveumImage,
+    description: "B2B argentinian platform for providers and companies.",
+    technologies: ["Supabase", "Next", "OAuth"],
+    liveUrl: "https://www.proveum.com.ar",
+  },
+  {
+    id: 2,
+    title: "Armada E-sports",
+    category: "Landing Page",
     image: gamingImage,
     description:
-      "Interactive dashboard for financial data visualization with real-time updates and customizable widgets.",
+      "A modern and responsive landing page for Armada Esports, showcasing their teams, events, and community engagement.",
     technologies: ["TypeScript", "Next.js", "Chakra UI", "React Hook Form"],
     liveUrl: "https://armadaesports.gg",
   },
   {
-    id: 2,
+    id: 3,
     title: "Jewelry E-commerce",
     category: "Full-Stack Development",
     image: ecommerceImage,
@@ -33,7 +43,7 @@ const portfolioItems = [
   },
 
   {
-    id: 3,
+    id: 4,
     title: "AI Argentinian Translator",
     category: "Web Application & AI",
     image: chetalkImage,
@@ -49,16 +59,12 @@ export default function Portfolio() {
     <div className="section-container">
       <div className="flex items-center mb-8">
         <div className="tab active">
-          <span className="font-mono text-sm">portfolio</span>
+          <span className="font-mono text-sm">projects</span>
         </div>
       </div>
 
       <div className="mb-12">
         <h2 className="text-3xl font-bold mb-4">Featured Work</h2>
-        <p className="text-vscode-text-muted max-w-2xl">
-          A collection of my best work showcasing my skills in front-end
-          development, back-end knowledge, and performance optimization.
-        </p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8">

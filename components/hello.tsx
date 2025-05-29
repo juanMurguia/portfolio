@@ -1,6 +1,6 @@
 "use client";
 import Spline from "@splinetool/react-spline";
-import { useState, useEffect, Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 export default function Hello() {
   const [isMobile, setIsMobile] = useState(false);
@@ -25,16 +25,14 @@ export default function Hello() {
   return (
     <div className="section-container flex flex-col md:flex-row justify-space-around h-svh w-full items-center overflow-hidden gap-4 md:gap-0">
       <div className="w-full">
-        <p className="text-vscode-text mb-2">Hey, I&apos;m</p>
-        <h1 className="text-5xl md:text-6xl font-bold mb-4">Juan Murguia</h1>
+        <h1 className="text-5xl md:text-4xl font-bold mb-2">Juan Murguia</h1>
         <div className="flex items-center mb-12">
-          <span className="text-vscode-accent mr-2">&gt;</span>
-          <p className="text-vscode-accent text-xl md:text-2xl">
-            Front-end developer
+          <p className="text-vscode-accent text-xl md:text-2xl ">
+            Software developer
           </p>
         </div>
 
-        <div className="space-y-4 font-mono text-sm">
+        <div className="space-y-2 font-mono text-sm">
           <div className="code-line">
             <span className="comment">{"// my info"}</span>
           </div>

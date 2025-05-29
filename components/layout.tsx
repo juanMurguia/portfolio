@@ -2,16 +2,15 @@
 
 import type React from "react";
 
-import { useState, useEffect } from "react";
+import { Github, Linkedin, Menu, X, XIcon } from "lucide-react";
 import Link from "next/link";
-import { Github, Linkedin, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const tabs = [
   { id: "hello", label: "hello" },
   { id: "about-me", label: "about-me" },
   { id: "portfolio", label: "portfolio" },
   { id: "skills", label: "skills" },
-  { id: "contact-me", label: "contact-me" },
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -98,15 +97,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             >
               <Github size={20} />
             </a>
-            {/*<a
-              href=""
-              download
-              className="text-vscode-text flex flex-row items-center justify-center gap-2 hover:text-vscode-accent transition-colors"
-              aria-label="Download CV"
+            <a
+              href="https://x.com/DevJuanCruz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-vscode-text hover:text-vscode-accent transition-colors"
+              aria-label="Twitter Profile"
             >
-              <FileDown size={20} />
-              <span>CV</span>
-            </a>*/}
+              <XIcon size={20} />
+            </a>
           </div>
         </div>
 
@@ -202,25 +201,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className="flex-1 pb-16 md:pb-0">{children}</main>
 
       {/* Footer */}
-      <footer className="border-t border-vscode-border py-4">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <footer className="border-t border-vscode-border py-8">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-center items-center">
           <div className="flex items-center text-sm text-vscode-text-muted mb-4 md:mb-0">
             <p className="font-mono text-center">
               {" "}
               &#169; {new Date().getFullYear()} Juan Murguia. All rights
               reserved.
             </p>
-          </div>
-          <div className="flex items-center text-sm">
-            <a
-              href="https://github.com/juanMurguia"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-vscode-text-muted hover:text-vscode-accent transition-colors flex items-center"
-            >
-              <span className="mr-1">@juanMurguia</span>
-              <Github size={16} />
-            </a>
           </div>
         </div>
       </footer>

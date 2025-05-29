@@ -2,11 +2,11 @@ const skillCategories = [
   {
     name: "Frontend",
     skills: [
-      "TypeScript",
-      "React",
-      "Next.js",
-      ".NET MAUI",
+      "Next",
+      "MAUI.NET",
       "Blazor",
+      "React",
+      "TypeScript",
       "Bootstrap",
       "Tailwind CSS",
     ],
@@ -19,6 +19,7 @@ const skillCategories = [
       "PostgreSQL",
       "Firebase",
       "API Rest",
+      "Supabase",
       "Sequelize",
     ],
   },
@@ -49,10 +50,9 @@ export default function Skills() {
 
       <div className="mb-12">
         <h2 className="text-3xl font-bold mb-4">Technical Skills</h2>
-        <p className="text-vscode-text-muted max-w-2xl">
-          As a front-end developer focused on design and performance, I also
-          have growing back-end skills in server-side programming and API
-          design.
+        <p className="text-vscode-text-muted ">
+          As a software developer focused on design and performance, I also have
+          back-end skills in server-side programming and API design.
         </p>
       </div>
 
