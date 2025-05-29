@@ -54,7 +54,8 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${firaCode.variable} font-sans bg-vscode-bg text-vscode-text min-h-screen`}
       >
-        {children}
+        <div className="bg-noise" aria-hidden="true" />
+        <div className="relative z-10">{children}</div>
         <Analytics />
       </body>
     </html>

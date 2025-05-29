@@ -25,9 +25,9 @@ export default function Hello() {
   return (
     <div className="section-container flex flex-col md:flex-row justify-space-around h-svh w-full items-center overflow-hidden gap-4 md:gap-0">
       <div className="w-full">
-        <h1 className="text-5xl md:text-4xl font-bold mb-2">Juan Murguia</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-2">Juan Murguia</h1>
         <div className="flex items-center mb-12">
-          <p className="text-vscode-accent text-xl md:text-2xl ">
+          <p className="text-sky-400 text-xl md:text-1xl font-light">
             Software developer
           </p>
         </div>

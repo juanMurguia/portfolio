@@ -56,15 +56,10 @@ export default function Skills() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-12">
+      <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12">
         {skillCategories.map((category, index) => (
-          <div
-            key={index}
-            className="bg-vscode-bg-light border border-vscode-border rounded-md p-6"
-          >
-            <h3 className="text-xl font-bold mb-4 text-vscode-accent">
-              {category.name}
-            </h3>
+          <div key={index} className="bg-vscode-bg-light/60  rounded-md p-6">
+            <h3 className="text-xl mb-4 text-sky-400">{category.name}</h3>
 
             <ul className="space-y-2">
               {category.skills.map((skill, skillIndex) => (

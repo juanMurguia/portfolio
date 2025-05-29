@@ -149,16 +149,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 >
                   <Github size={20} />
                 </a>
-                {/*
                 <a
-                  href=""
-                  download
+                  href="https://x.com/DevJuanCruz"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-vscode-text hover:text-vscode-accent transition-colors"
-                  aria-label="Download CV"
+                  aria-label="Twitter Profile"
                 >
-                  <FileDown size={20} />
+                  <XIcon size={20} />
                 </a>
-                */}
               </div>
             </div>
           </div>
@@ -185,16 +184,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         >
           <Github size={20} />
         </a>
-        {/*
         <a
-          href=""
-          download
-          className="text-vscode-text hover:text-vscode-accent transition-colors"
-          aria-label="Download CV"
+          href="https://x.com/DevJuanCruz"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-vscode-text hover:text-vscode-accent transition-colors p-4"
+          aria-label="Twitter Profile"
         >
-          <FileDown size={20} />
+          <XIcon size={20} />
         </a>
-         */}
       </div>
 
       {/* Main content */}

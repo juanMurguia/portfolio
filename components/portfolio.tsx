@@ -2,7 +2,6 @@ import chetalkImage from "@/app/assets/chetalk.webp";
 import ecommerceImage from "@/app/assets/ecommerce.webp";
 import gamingImage from "@/app/assets/gaming.webp";
 import proveumImage from "@/app/assets/proveum.jpg";
-import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 
 const portfolioItems = [
@@ -22,7 +21,7 @@ const portfolioItems = [
     image: gamingImage,
     description:
       "A modern and responsive landing page for Armada Esports, showcasing their teams, events, and community engagement.",
-    technologies: ["TypeScript", "Next.js", "Chakra UI", "React Hook Form"],
+    technologies: ["TypeScript", "Next", "Chakra UI", "React Hook Form"],
     liveUrl: "https://armadaesports.gg",
   },
   {
@@ -34,7 +33,7 @@ const portfolioItems = [
       "A modern and optimized e-commerce platform for jewelry, enhancing user experience, product discovery, and conversion rates.",
     technologies: [
       "PostgreSQL",
-      "Next.js",
+      "Next",
       "Tailwind CSS",
       "Firebase Auth",
       "Algolia",
@@ -67,56 +66,45 @@ export default function Portfolio() {
         <h2 className="text-3xl font-bold mb-4">Featured Work</h2>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         {portfolioItems.map((item) => (
-          <div key={item.id} className="project-card group">
-            <a
-              href={item.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Project details"
-            >
-              <div className="relative aspect-video overflow-hidden">
-                <Image
-                  src={item.image || "/placeholder.svg"}
-                  alt={item.title}
-                  fill
-                  loading="lazy"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-vscode-bg to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
+          <a
+            key={item.id}
+            href={item.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group rounded-2xl overflow-hidden  bg-vscode-bg-light/60 transition hover:shadow-lg hover:-translate-y-1"
+          >
+            <div className="aspect-video relative">
+              <Image
+                src={item.image || "/placeholder.svg"}
+                alt={item.title}
+                fill
+                className="object-cover "
+              />
+            </div>
+
+            <div className="p-5 flex flex-col gap-3">
+              <div className="text-xs font-mono text-vscode-accent">
+                {item.category}
               </div>
+              <h3 className="text-lg font-bold">{item.title}</h3>
+              <p className="text-sm text-vscode-text-muted leading-relaxed">
+                {item.description}
+              </p>
 
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-3">
-                  <div>
-                    <span className="text-xs text-vscode-accent font-mono">
-                      {item.category}
-                    </span>
-                    <h3 className="text-xl font-bold">{item.title}</h3>
-                  </div>
-                  <div className="text-vscode-accent hover:text-vscode-accent/80 transition-colors">
-                    <ExternalLink size={16} />
-                  </div>
-                </div>
-
-                <p className="text-vscode-text-muted mb-4">
-                  {item.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {item.technologies.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 bg-vscode-bg border border-vscode-border rounded-md text-xs font-mono"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {item.technologies.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 bg-white/10 border border-vscode-border rounded-md text-xs font-mono text-white"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
-            </a>
-          </div>
+            </div>
+          </a>
         ))}
       </div>
     </div>
