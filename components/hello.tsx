@@ -1,6 +1,9 @@
 "use client";
-import Spline from "@splinetool/react-spline";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { GlareCard } from "./ui/glare-card";
+import { TextGenerateEffect } from "./ui/text-generate-effect";
+import ProfileImg from "@/app/assets/profile.jpg";
+import Image from "next/image";
 
 export default function Hello() {
   const [isMobile, setIsMobile] = useState(false);
@@ -23,78 +26,29 @@ export default function Hello() {
     }
   }, []);
   return (
-    <div className="section-container flex flex-col md:flex-row justify-space-around h-svh w-full items-center overflow-hidden gap-4 md:gap-0">
-      <div className="w-full">
-        <h1 className="text-3xl md:text-4xl font-bold mb-2">Juan Murguia</h1>
-        <div className="flex items-center mb-12">
-          <p className="text-sky-400 text-xl md:text-1xl font-light">
-            Software developer
-          </p>
-        </div>
-
-        <div className="space-y-2 font-mono text-sm">
-          <div className="code-line">
-            <span className="comment">{"// my info"}</span>
+    <div className=" flex flex-col md:flex-row justify-center w-full min-h-dvh items-center overflow-hidden gap-4 md:gap-8">
+      <div className="max-w-4xl w-full flex flex-col items-start md:items-center justify-center text-center gap-4  p-4">
+        <TextGenerateEffect
+          words="I craft scalable and stunning products people remember."
+          className="text-5xl text-left md:text-6xl mb-2 text-white"
+        />
+        <GlareCard className=" h-auto py-4 md:py-2 px-8  flex flex-row items-center justify-center">
+          <Image
+            src={ProfileImg}
+            width={500}
+            height={500}
+            alt="Juan Murguia"
+            className="rounded-[10px] object-cover h-14 w-14 md:h-10 md:w-10 mr-4"
+          />
+          <div className="flex flex-col text-left justify-center">
+            <h1 className="text-md md:text-md  mb-0">Juan Murguia</h1>
+            <div className="flex items-center">
+              <p className="text-sky-400 text-md md:text-sm font-light">
+                Software Developer
+              </p>
+            </div>
           </div>
-
-          <a
-            className="code-line hover:brightness-150 block"
-            href="mailto:juancruzmur@gmail.com"
-            target="_blank"
-          >
-            <span className="keyword">const</span>{" "}
-            <span className="variable">email</span> ={" "}
-            <span className="string">&quot;juancruzmur@gmail.com&quot;</span>;
-          </a>
-
-          <a
-            className="code-line hover:brightness-150 block"
-            href="https://github.com/juanMurguia"
-            target="_blank"
-          >
-            <span className="keyword">const</span>{" "}
-            <span className="variable">githubLink</span> ={" "}
-            <span className="string">&quot;github.com/juanMurguia&quot;</span>;
-          </a>
-
-          <a
-            className="code-line hover:brightness-150 block"
-            href="https://www.linkedin.com/in/juan-cruz-murguia/"
-            target="_blank"
-          >
-            <span className="keyword">const</span>{" "}
-            <span className="variable">linkedinPage</span> ={" "}
-            <span className="string">
-              &quot;linkedin.com/juan-cruz-murguia&quot;
-            </span>
-            ;
-          </a>
-        </div>
-      </div>
-      <div
-        className="scene-container"
-        style={{ overflow: "hidden", width: "100%", height: "100%" }}
-      >
-        <div
-          className="zoomed-spline"
-          style={
-            isMobile
-              ? {
-                  transform: "scale(1.2) translateY(5%)",
-                  width: "100%",
-                  height: "100%",
-                }
-              : {
-                  transform: "scale(1.12) translateX(20%) translateY(5%)",
-                  width: "100%",
-                  height: "100%",
-                }
-          }
-        >
-          <Suspense fallback={<div className="text-white">Loading...</div>}>
-            <Spline scene="https://prod.spline.design/qR9xNOFtDzaRXXh7/scene.splinecode" />
-          </Suspense>
-        </div>
+        </GlareCard>
       </div>
     </div>
   );

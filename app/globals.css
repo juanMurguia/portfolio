@@ -66,7 +66,7 @@
     right: 0;
     bottom: 0;
     background: radial-gradient(circle at 25% 15%, rgba(0, 225, 255, 0.08) 0%, transparent 40%),
-      radial-gradient(circle at 75% 85%, rgba(255, 107, 0, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 75% 85%, rgba(255, 0, 217, 0.06) 0%, transparent 40%),
       radial-gradient(circle at 50% 50%, rgba(0, 225, 255, 0.03) 0%, transparent 60%),
       radial-gradient(circle at 80% 20%, rgba(0, 100, 200, 0.04) 0%, transparent 50%);
     pointer-events: none;

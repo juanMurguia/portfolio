@@ -13,17 +13,19 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <Layout>
-      <div id="hello" className="min-h-screen">
-        <Hello />
-      </div>
-      <div id="about-me">
-        <AboutMe />
-      </div>
-      <div id="portfolio" className="min-h-screen">
-        <Portfolio />
-      </div>
-      <div id="skills" className="min-h-screen">
-        <Skills />
+      <div className="flex-col px-8 gap-16 md:gap-36 flex">
+        <div>
+          <Hello />
+        </div>
+        <div id="about-me">
+          <AboutMe />
+        </div>
+        <div id="portfolio" className="min-h-screen">
+          <Portfolio />
+        </div>
+        <div id="skills" className="min-h-screen">
+          <Skills />
+        </div>
       </div>
     </Layout>
   );

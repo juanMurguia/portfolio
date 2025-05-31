@@ -55,13 +55,7 @@ const portfolioItems = [
 
 export default function Portfolio() {
   return (
-    <div className="section-container">
-      <div className="flex items-center mb-8">
-        <div className="tab active">
-          <span className="font-mono text-sm">projects</span>
-        </div>
-      </div>
-
+    <div>
       <div className="mb-12">
         <h2 className="text-3xl font-bold mb-4">Featured Work</h2>
       </div>
@@ -73,7 +67,7 @@ export default function Portfolio() {
             href={item.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group rounded-2xl overflow-hidden  bg-vscode-bg-light/60 transition hover:shadow-lg hover:-translate-y-1"
+            className="group rounded-3xl overflow-hidden  bg-gradient-to-tl from-slate-950 to-slate-900 transition hover:shadow-lg hover:-translate-y-1"
           >
             <div className="aspect-video relative">
               <Image
