@@ -53,7 +53,7 @@ export default function Hello() {
               width={500}
               height={500}
               alt="Juan Murguia"
-              className="rounded-[10px] object-cover h-14 w-14 md:h-10 md:w-10 mr-4"
+              className="rounded-[24px] object-cover h-14 w-14 md:h-10 md:w-10 mr-4"
             />
             <div className="flex flex-col text-left justify-center">
               <h1 className="text-md md:text-md  mb-0">Juan Murguia</h1>
