@@ -23,7 +23,7 @@ export default function Home() {
         <div id="portfolio" className="min-h-screen">
           <Portfolio />
         </div>
-        <div id="skills" className="min-h-screen">
+        <div id="skills" className="py-44">
           <Skills />
         </div>
       </div>

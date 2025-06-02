@@ -42,8 +42,8 @@ const skillCategories = [
 export default function Skills() {
   return (
     <div>
-      <div className="mb-4">
-        <h2 className="text-3xl font-bold ">Technical Skills</h2>
+      <div className="mb-12">
+        <h2 className="text-3xl font-bold text-center">Technical Skills</h2>
       </div>
 
       <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12">

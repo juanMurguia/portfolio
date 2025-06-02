@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 let interval: any;
 
@@ -53,16 +53,22 @@ export const CardStack = ({
         <motion.div
           key={card.id}
           className={`
-            absolute
-            bg-gradient-to-tl from-slate-950 to-slate-900
-            h-30 w-full md:h-auto md:w-auto
-            rounded-2xl
-            p-6
-            shadow-xl
-            flex flex-col justify-between
-            transition-all
-            duration-300
-          `}
+      absolute
+      ${
+        index === 0
+          ? "bg-gradient-to-bl from-slate-900 to-slate-900"
+          : index === 1
+          ? "bg-gradient-to-tl from-slate-900 to-slate-800"
+          : "bg-gradient-to-bl from-slate-950 to-slate-900"
+      }
+      h-[120px] w-full md:w-96
+      rounded-2xl
+      p-6
+      shadow-xl
+      flex flex-col justify-between
+      transition-all
+      duration-300
+    `}
           style={{
             transformOrigin: "top center",
           }}

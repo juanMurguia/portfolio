@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,17 +7,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   CheckCircle,
   Clock,
-  Zap,
-  Palette,
-  ShoppingCart,
   Globe,
-  Smartphone,
+  Palette,
   Search,
   Shield,
+  ShoppingCart,
+  Smartphone,
+  Zap,
 } from "lucide-react";
 
 export default function LandingPage() {
@@ -124,12 +124,6 @@ export default function LandingPage() {
                     <CheckCircle className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
                     <span className="text-gray-300">
                       SEO optimizado para Google
-                    </span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-300">
-                      Subdominio gratuito (.vercel.app)
                     </span>
                   </div>
                   <div className="flex items-start gap-2">
