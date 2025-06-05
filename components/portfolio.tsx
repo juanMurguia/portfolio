@@ -3,6 +3,7 @@ import ecommerceImage from "@/app/assets/ecommerce.webp";
 import gamingImage from "@/app/assets/gaming.webp";
 import proveumImage from "@/app/assets/proveum.jpg";
 import Image from "next/image";
+import { useLocale } from "@/lib/context/locale";
 
 const portfolioItems = [
   {
@@ -54,10 +55,11 @@ const portfolioItems = [
 ];
 
 export default function Portfolio() {
+  const { t } = useLocale();
   return (
     <div>
       <div className="mb-12">
-        <h2 className="text-3xl font-bold mb-4 text-center">Featured Work</h2>
+        <h2 className="text-3xl font-bold mb-4 text-center">{t("portfolio.title")}</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

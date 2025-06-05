@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { useLocale } from "@/lib/context/locale";
 
 let interval: any;
 
@@ -20,6 +21,7 @@ export const CardStack = ({
   offset?: number;
   scaleFactor?: number;
 }) => {
+  const { t } = useLocale();
   const CARD_OFFSET = offset || 10;
   const SCALE_FACTOR = scaleFactor || 0.06;
   const [cards, setCards] = useState<Card[]>(items);
@@ -47,7 +49,7 @@ export const CardStack = ({
     <div
       className="relative h-auto w-full md:h-28 md:w-96 cursor-pointer select-none "
       onClick={flipCard}
-      title="Click to see next fact"
+      title={t("cardstack.tooltip")}
     >
       {cards.map((card, index) => (
         <motion.div

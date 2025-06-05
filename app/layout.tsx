@@ -2,6 +2,8 @@ import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
 import { Fira_Code, Inter } from "next/font/google";
 import "./globals.css";
+import { LocaleProvider } from "@/lib/context/locale";
+import LanguageSwitcher from "@/components/language-switcher";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -54,9 +56,16 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${firaCode.variable} font-sans bg-vscode-bg text-vscode-text min-h-screen`}
       >
-        <div className="bg-noise" aria-hidden="true" />
-        <div className="relative z-10">{children}</div>
-        <Analytics />
+        <LocaleProvider>
+          <div className="bg-noise" aria-hidden="true" />
+          <div className="relative z-10">
+            <div className="fixed top-4 right-4 z-20">
+              <LanguageSwitcher />
+            </div>
+            {children}
+          </div>
+          <Analytics />
+        </LocaleProvider>
       </body>
     </html>
   );

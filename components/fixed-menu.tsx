@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useLocale } from "@/lib/context/locale";
 import Link from "next/link";
 import { Github, Linkedin, Download, Menu, X } from "lucide-react";
 
 export default function FixedMenu() {
+  const { t } = useLocale();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -37,7 +39,7 @@ export default function FixedMenu() {
                 scrolled ? "text-gray-800" : "text-white"
               } hover:text-primary transition-colors`}
             >
-              Home
+              {t("menu.home")}
             </Link>
             <Link
               href="#portfolio"
@@ -45,7 +47,7 @@ export default function FixedMenu() {
                 scrolled ? "text-gray-800" : "text-white"
               } hover:text-primary transition-colors`}
             >
-              Portfolio
+              {t("menu.portfolio")}
             </Link>
             <Link
               href="#skills"
@@ -53,7 +55,7 @@ export default function FixedMenu() {
                 scrolled ? "text-gray-800" : "text-white"
               } hover:text-primary transition-colors`}
             >
-              Skills
+              {t("menu.skills")}
             </Link>
             <Link
               href="#contact"
@@ -61,7 +63,7 @@ export default function FixedMenu() {
                 scrolled ? "text-gray-800" : "text-white"
               } hover:text-primary transition-colors`}
             >
-              Contact
+              {t("menu.contact")}
             </Link>
           </nav>
 
@@ -101,7 +103,7 @@ export default function FixedMenu() {
                   ? "text-primary bg-primary/10"
                   : "text-white bg-white/20"
               } hover:bg-primary hover:text-white transition-colors`}
-              aria-label="Download CV"
+              aria-label={t("menu.download_cv")}
             >
               <Download size={20} />
             </Link>
@@ -123,21 +125,21 @@ export default function FixedMenu() {
         <div className="fixed inset-0 bg-primary z-40 pt-20 px-4 md:hidden">
           <nav className="flex flex-col gap-6 items-center text-white text-xl">
             <Link href="/" onClick={() => setIsOpen(false)} className="py-2">
-              Home
+              {t("menu.home")}
             </Link>
             <Link
               href="#portfolio"
               onClick={() => setIsOpen(false)}
               className="py-2"
             >
-              Portfolio
+              {t("menu.portfolio")}
             </Link>
             <Link
               href="#skills"
               onClick={() => setIsOpen(false)}
               className="py-2"
             >
-              Skills
+              {t("menu.skills")}
             </Link>
 
             <div className="flex gap-6 mt-8">
@@ -163,7 +165,7 @@ export default function FixedMenu() {
                 href="/resume.pdf"
                 target="_blank"
                 className="p-3 bg-white/10 rounded-full hover:bg-white/20 transition-colors"
-                aria-label="Download CV"
+                aria-label={t("menu.download_cv")}
               >
                 <Download size={24} />
               </Link>
