@@ -39,7 +39,7 @@ export const LocaleProvider = ({ children }: { children: React.ReactNode }) => {
   }, [locale]);
 
   const t = (key: string) => {
-    return (translations[locale] as any)[key] ?? key;
+    return (translations[locale] as any)[key] ?? (translations["en"] as any)[key] ?? key;
   };
 
   return (
