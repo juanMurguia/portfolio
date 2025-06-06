@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion, stagger, useAnimate } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -15,6 +15,7 @@ export const TextGenerateEffect = ({
   duration?: number;
 }) => {
   const [scope, animate] = useAnimate();
+  const [refreshKey, setRefreshKey] = useState(0);
   let wordsArray = words.split(" ");
   useEffect(() => {
     animate(
@@ -28,11 +29,22 @@ export const TextGenerateEffect = ({
         delay: stagger(0.2),
       }
     );
-  }, [scope.current]);
+  }, [scope.current, refreshKey, animate, filter, duration]);
+
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      setRefreshKey((prevKey) => prevKey + 1);
+    };
+
+    window.addEventListener("languageChanged", handleLanguageChange);
+    return () => {
+      window.removeEventListener("languageChanged", handleLanguageChange);
+    };
+  }, []);
 
   const renderWords = () => {
     return (
-      <motion.div ref={scope}>
+      <motion.div ref={scope} key={refreshKey}>
         {wordsArray.map((word, idx) => {
           return (
             <motion.span
@@ -51,7 +63,7 @@ export const TextGenerateEffect = ({
   };
 
   return (
-    <div className={cn("font-bold", className)}>
+    <div className={cn("font-bold", className)} key={refreshKey}>
       <div className="mt-4">
         <div className=" dark:text-white text-black text-2xl leading-snug tracking-wide">
           {renderWords()}

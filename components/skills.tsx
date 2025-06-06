@@ -1,4 +1,5 @@
-import { useLocale } from "@/lib/context/locale";
+"use client";
+import useLocale from "@/lib/context/useLocale";
 
 const skillCategories = [
   {
@@ -59,7 +60,9 @@ export default function Skills() {
             key={index}
             className="bg-gradient-to-tl from-slate-950 to-slate-900 rounded-3xl p-6"
           >
-            <h3 className="text-xl mb-4 text-sky-400">{t(`skills.category.${category.key}`)}</h3>
+            <h3 className="text-xl mb-4 text-sky-400">
+              {t(`skills.category.${category.key}`)}
+            </h3>
 
             <ul className="space-y-2">
               {category.skills.map((skill, skillIndex) => (

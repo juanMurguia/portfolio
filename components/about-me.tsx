@@ -1,9 +1,9 @@
+"use client";
 import { CardStack } from "./ui/card-stack";
-import { useLocale } from "@/lib/context/locale";
-
-
+import useLocale from "@/lib/context/useLocale";
 export default function AboutMe() {
   const { t } = useLocale();
+  console.log("useLocale is", useLocale);
   const aboutMeFacts = [
     {
       id: 1,

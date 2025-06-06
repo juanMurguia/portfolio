@@ -5,8 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { GlareCard } from "./ui/glare-card";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
-import { useLocale } from "@/lib/context/locale";
-
+import useLocale from "@/lib/context/useLocale";
 export default function Hello() {
   const { t } = useLocale();
   const [isMobile, setIsMobile] = useState(false);
@@ -38,7 +37,7 @@ export default function Hello() {
   }, []);
   return (
     <div className=" flex flex-col md:flex-row justify-center w-full min-h-dvh items-center overflow-hidden gap-4 md:gap-8">
-      <div className="max-w-4xl w-full flex flex-col items-start md:items-center justify-center text-center gap-4  p-4">
+      <div className="max-w-4xl w-full flex flex-col items-start md:items-center justify-center text-center gap-6  p-4">
         <TextGenerateEffect
           words={t("hello.tagline")}
           className="text-5xl text-left md:text-center md:text-6xl mb-2 text-white"
@@ -49,7 +48,7 @@ export default function Hello() {
           animate={{ opacity: showCard ? 1 : 0 }}
           transition={{ duration: 0.5 }}
         >
-          <GlareCard className=" h-auto py-4 md:py-2 px-8  flex flex-row items-center justify-center">
+          <GlareCard className=" h-auto py-4 md:py-2 px-4  flex flex-row items-center justify-center">
             <Image
               src={ProfileImg}
               width={500}
@@ -58,9 +57,9 @@ export default function Hello() {
               className="rounded-[24px] object-cover h-14 w-14 md:h-10 md:w-10 mr-4"
             />
             <div className="flex flex-col text-left justify-center">
-              <h1 className="text-md md:text-md  mb-0">{t("hello.name")}</h1>
+              <h1 className="text-md md:text-sm  mb-0">{t("hello.name")}</h1>
               <div className="flex items-center">
-                <p className="text-sky-400 text-md md:text-sm font-light">
+                <p className="text-sky-400 text-md md:text-xs font-light">
                   {t("hello.role")}
                 </p>
               </div>

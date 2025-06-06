@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 import en from "@/locales/en.json";
 import es from "@/locales/es.json";
 
@@ -12,13 +12,12 @@ interface LocaleContextValue {
   t: (key: string) => string;
 }
 
-const LocaleContext = createContext<LocaleContextValue>({
+// Export the context so it can be used in the hook file
+export const LocaleContext = createContext<LocaleContextValue>({
   locale: "en",
   setLocale: () => {},
   t: (key) => key,
 });
-
-export const useLocale = () => useContext(LocaleContext);
 
 export const LocaleProvider = ({ children }: { children: React.ReactNode }) => {
   const [locale, setLocale] = useState<Locale>("en");
@@ -39,7 +38,11 @@ export const LocaleProvider = ({ children }: { children: React.ReactNode }) => {
   }, [locale]);
 
   const t = (key: string) => {
-    return (translations[locale] as any)[key] ?? (translations["en"] as any)[key] ?? key;
+    return (
+      (translations[locale] as any)[key] ??
+      (translations["en"] as any)[key] ??
+      key
+    );
   };
 
   return (

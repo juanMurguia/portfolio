@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useLocale } from "@/lib/context/locale";
+import useLocale from "@/lib/context/useLocale";
 import Link from "next/link";
 import { Github, Linkedin, Download, Menu, X } from "lucide-react";
 

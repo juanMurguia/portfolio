@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { useLocale } from "@/lib/context/locale";
+import useLocale from "@/lib/context/useLocale";
 
 let interval: any;
 
@@ -58,9 +58,9 @@ export const CardStack = ({
       absolute
       ${
         index === 0
-          ? "bg-gradient-to-bl from-slate-900 to-slate-900"
+          ? "bg-gradient-to-bl from-slate-800 to-slate-900"
           : index === 1
-          ? "bg-gradient-to-tl from-slate-900 to-slate-800"
+          ? "bg-gradient-to-tl from-slate-900 to-slate-900"
           : "bg-gradient-to-bl from-slate-950 to-slate-900"
       }
       h-[120px] w-full md:w-96
