@@ -4,6 +4,7 @@ import { Fira_Code, Inter } from "next/font/google";
 import "./globals.css";
 import { LocaleProvider } from "@/lib/context/locale";
 import LanguageSwitcher from "@/components/language-switcher";
+import CursorLight from "@/components/cursor-light";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
       >
         <LocaleProvider>
           <div className="bg-noise" aria-hidden="true" />
+          <CursorLight />
           <div className="relative z-10">
             <div className="fixed top-4 right-4 z-20">
               <LanguageSwitcher />
