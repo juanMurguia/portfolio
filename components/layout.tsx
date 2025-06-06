@@ -40,7 +40,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <FloatingDock
           mobileClassName="fixed bottom-10"
           items={socialLinks}
-          desktopClassName="fixed bottom-10"
+          desktopClassName="fixed bottom-4"
         />
       </div>
 

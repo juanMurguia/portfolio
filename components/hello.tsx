@@ -37,7 +37,7 @@ export default function Hello() {
   }, []);
   return (
     <div className=" flex flex-col md:flex-row justify-center w-full min-h-dvh items-center overflow-hidden gap-4 md:gap-8">
-      <div className="max-w-4xl w-full flex flex-col items-start md:items-center justify-center text-center gap-6  p-4">
+      <div className="max-w-4xl cursor-default w-full flex flex-col items-start md:items-center justify-center text-center gap-6  p-4">
         <TextGenerateEffect
           words={t("hello.tagline")}
           className="text-5xl text-left md:text-center md:text-6xl mb-2 text-white"

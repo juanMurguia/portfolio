@@ -1,5 +1,7 @@
 "use client";
 import useLocale from "@/lib/context/useLocale";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const skillCategories = [
   {
@@ -48,17 +50,67 @@ const skillCategories = [
 
 export default function Skills() {
   const { t } = useLocale();
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  // Container animation variants
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  // Card animation variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.19, 1.0, 0.22, 1.0],
+        delayChildren: 0.3,
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  // Skill item animation variants
+  const skillVariants = {
+    hidden: { opacity: 0, x: -10 },
+    show: { opacity: 1, x: 0 },
+  };
+
+  // Code snippet decorative elements
+  const getRandomOffset = () => Math.floor(Math.random() * 5) - 2;
+
   return (
-    <div>
+    <div ref={ref}>
       <div className="mb-12">
         <h2 className="text-3xl font-bold text-center">{t("skills.title")}</h2>
       </div>
 
-      <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-12">
+      <motion.div
+        className="grid md:grid-cols-4 sm:grid-cols-2 gap-12"
+        variants={containerVariants}
+        initial="hidden"
+        animate={inView ? "show" : "hidden"}
+      >
         {skillCategories.map((category, index) => (
-          <div
+          <motion.div
             key={index}
-            className="bg-gradient-to-tl from-slate-950 to-slate-900 rounded-3xl p-6"
+            className="bg-vscode-bg-light bg-opacity-50 rounded-3xl p-6 relative overflow-hidden cursor-default"
+            variants={cardVariants}
+            whileHover={{
+              scale: 1.03,
+              boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
+              background: "rgba(30, 41, 59, 0.5)",
+            }}
           >
             <h3 className="text-xl mb-4 text-sky-400">
               {t(`skills.category.${category.key}`)}
@@ -66,17 +118,46 @@ export default function Skills() {
 
             <ul className="space-y-2">
               {category.skills.map((skill, skillIndex) => (
-                <li
+                <motion.li
                   key={skillIndex}
                   className="font-mono text-sm text-vscode-text-muted"
+                  variants={skillVariants}
+                  transition={{ duration: 0.3, delay: skillIndex * 0.1 }}
                 >
                   - {skill}
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
+
+            {/* Decorative elements */}
+            <motion.div
+              className="absolute left-4 top-4 w-16 h-16 rounded-full bg-sky-500/20 blur-xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.4, 0.6, 0.4],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+
+            <motion.div
+              className="absolute right-0 bottom-0 w-16 h-16 rounded-full bg-sky-500 blur-2xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.1, 0.5, 0.2],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

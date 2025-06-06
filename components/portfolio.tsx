@@ -69,7 +69,7 @@ export default function Portfolio() {
             href={item.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group rounded-3xl overflow-hidden  bg-gradient-to-tl from-slate-950 to-slate-900 transition hover:shadow-lg hover:-translate-y-1"
+            className="group rounded-3xl overflow-hidden bg-vscode-bg-light  bg-opacity-50 transition hover:shadow-lg hover:-translate-y-1"
           >
             <div className="aspect-video relative">
               <Image
