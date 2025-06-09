@@ -59,7 +59,7 @@ export default function Hello() {
             <div className="flex flex-col text-left justify-center">
               <h1 className="text-md md:text-sm  mb-0">{t("hello.name")}</h1>
               <div className="flex items-center">
-                <p className="text-sky-400 text-md md:text-xs font-light">
+                <p className="text-white-400 text-md md:text-xs font-light">
                   {t("hello.role")}
                 </p>
               </div>

@@ -58,10 +58,10 @@ export const CardStack = ({
       absolute
       ${
         index === 0
-          ? "bg-gradient-to-bl from-slate-800 to-slate-900"
+          ? "bg-gradient-to-tr from-[#300000] to-[#400000]"
           : index === 1
-          ? "bg-gradient-to-tl from-slate-900 to-slate-900"
-          : "bg-gradient-to-bl from-slate-950 to-slate-900"
+          ? "bg-gradient-to-bl from-[#260000] to-[#1a0000]"
+          : "bg-gradient-to-bl from-[#100000] to-[#0a0000]"
       }
       h-[120px] w-full md:w-96
       rounded-2xl
@@ -86,7 +86,7 @@ export const CardStack = ({
             </span>
           </div>
           <div className="mt-auto">
-            <p className="text-sm md:text-md font-light text-sky-400">
+            <p className="text-sm md:text-md font-light text-[#ff5050]">
               {card.name}
             </p>
             {card.designation && (

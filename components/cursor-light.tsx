@@ -23,7 +23,7 @@ export default function CursorLight() {
       className="pointer-events-none fixed inset-0 z-0"
       style={{
         background:
-          "radial-gradient(400px circle at var(--x,50%) var(--y,50%), rgba(0,225,255,0.15), transparent 80%)",
+          "radial-gradient(400px circle at var(--x,50%) var(--y,50%), rgba(255,50,50,0.15), transparent 80%)",
       }}
     />
   );

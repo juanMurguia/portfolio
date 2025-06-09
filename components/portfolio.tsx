@@ -69,7 +69,7 @@ export default function Portfolio() {
             href={item.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group rounded-3xl overflow-hidden bg-vscode-bg-light  bg-opacity-50 transition hover:shadow-lg hover:-translate-y-1"
+            className="group rounded-3xl overflow-hidden bg-[#1a0000] bg-opacity-70 transition hover:shadow-[0_10px_20px_rgba(255,50,50,0.15)] hover:-translate-y-1 border border-[#400000]"
           >
             <div className="aspect-video relative">
               <Image
@@ -81,7 +81,7 @@ export default function Portfolio() {
             </div>
 
             <div className="p-5 flex flex-col gap-3">
-              <div className="text-xs font-mono text-vscode-accent">
+              <div className="text-xs font-mono text-[#ff5050]">
                 {t(item.categoryKey)}
               </div>
               <h3 className="text-lg font-bold">{item.title}</h3>
@@ -93,7 +93,7 @@ export default function Portfolio() {
                 {item.technologies.map((tech, index) => (
                   <span
                     key={index}
-                    className="px-2 py-1 bg-white/10 border border-vscode-border rounded-md text-xs font-mono text-white"
+                    className="px-2 py-1 bg-[#300000] border border-[#500000] rounded-md text-xs font-mono text-[#ffcccc]"
                   >
                     {tech}
                   </span>

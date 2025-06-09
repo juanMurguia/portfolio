@@ -104,15 +104,15 @@ export default function Skills() {
         {skillCategories.map((category, index) => (
           <motion.div
             key={index}
-            className="bg-vscode-bg-light bg-opacity-50 rounded-3xl p-6 relative overflow-hidden cursor-default"
+            className="bg-[#380a0a81] bg-opacity-70 rounded-3xl p-6 relative overflow-hidden cursor-default border border-[#400000]"
             variants={cardVariants}
             whileHover={{
               scale: 1.03,
-              boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
-              background: "rgba(30, 41, 59, 0.5)",
+              boxShadow: "0 10px 25px rgba(255,50,50,0.15)",
+              background: "rgba(40, 0, 0, 0.7)",
             }}
           >
-            <h3 className="text-xl mb-4 text-sky-400">
+            <h3 className="text-xl mb-4 text-[#ff5050]">
               {t(`skills.category.${category.key}`)}
             </h3>
 
@@ -120,7 +120,7 @@ export default function Skills() {
               {category.skills.map((skill, skillIndex) => (
                 <motion.li
                   key={skillIndex}
-                  className="font-mono text-sm text-vscode-text-muted"
+                  className="font-mono text-sm text-[#ffcccc]"
                   variants={skillVariants}
                   transition={{ duration: 0.3, delay: skillIndex * 0.1 }}
                 >
@@ -129,22 +129,8 @@ export default function Skills() {
               ))}
             </ul>
 
-            {/* Decorative elements */}
             <motion.div
-              className="absolute left-4 top-4 w-16 h-16 rounded-full bg-sky-500/20 blur-xl"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.4, 0.6, 0.4],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-            />
-
-            <motion.div
-              className="absolute right-0 bottom-0 w-16 h-16 rounded-full bg-sky-500 blur-2xl"
+              className="absolute right-0 bottom-0 w-16 h-16 rounded-full bg-[#ff3030] blur-2xl"
               animate={{
                 scale: [1, 1.2, 1],
                 opacity: [0.1, 0.5, 0.2],

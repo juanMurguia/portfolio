@@ -71,9 +71,11 @@ const FloatingDockMobile = ({
                 <a
                   href={item.href}
                   key={item.title}
-                  className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-900"
+                  className="flex h-14 w-14 items-center justify-center rounded-full bg-white"
                 >
-                  <div className="h-4 w-4 align-center">{item.icon}</div>
+                  <div className="flex items-center justify-center h-7 w-7 text-red-600">
+                    {item.icon}
+                  </div>
                 </a>
               </motion.div>
             ))}
@@ -92,12 +94,12 @@ const FloatingDockMobile = ({
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute inset-0 rounded-full border-2 border-blue-500 pointer-events-none"
+          className="absolute inset-0 rounded-full border-2 border-red-500 pointer-events-none"
           style={{ filter: "blur(1px)" }}
         />
         <button
           onClick={() => setOpen(!open)}
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-slate-900 relative z-10"
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-white-100 relative z-10"
         >
           <User className="h-7 w-7 text-neutral-400" />
         </button>
@@ -119,7 +121,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e: any) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto hidden h-12 items-center gap-4 rounded-2xl px-8 md:flex bg-slate-950 backdrop-blur-lg shadow-lg",
+        "mx-auto hidden h-12 items-center gap-4 rounded-2xl px-8 md:flex bg-gray-100 backdrop-blur-lg shadow-lg",
         className
       )}
     >
@@ -194,11 +196,11 @@ function IconContainer({
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="relative flex aspect-square items-center justify-center rounded-full bg-slate-900"
+        className="relative flex aspect-square items-center justify-center rounded-full bg-red-800"
       >
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
-          className="flex items-center justify-center"
+          className="flex items-center justify-center text-white"
         >
           {icon}
         </motion.div>
