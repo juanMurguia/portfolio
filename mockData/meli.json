@@ -1,0 +1,56 @@
+{
+  "slug": "meli",
+  "name": "Mercado Libre",
+  "logoUrl": "https://http2.mlstatic.com/frontend-assets/ui-navigation/5.18.9/mercadolibre/logo__large_plus.png",
+  "primaryColor": "#FFE600",
+  "secondaryColor": "#003A99",
+  "heroTagline": {
+    "en": "I create scalable e-commerce solutions",
+    "es": "Creo soluciones escalables de e-commerce"
+  },
+  "whyFit": {
+    "en": "<p>With my extensive experience in building high-performance web applications with React and TypeScript, I can help Mercado Libre continue to deliver exceptional user experiences. My focus on performance optimization and responsive design aligns perfectly with Mercado Libre's commitment to excellence in e-commerce platforms.</p><p>Having worked on various e-commerce projects, I understand the importance of fast-loading pages, optimized checkout flows, and reliable payment integrations - all crucial to Mercado Libre's success.</p>",
+    "es": "<p>Con mi amplia experiencia en el desarrollo de aplicaciones web de alto rendimiento con React y TypeScript, puedo ayudar a Mercado Libre a seguir brindando experiencias de usuario excepcionales. Mi enfoque en la optimización del rendimiento y el diseño responsive se alinea perfectamente con el compromiso de Mercado Libre con la excelencia en plataformas de comercio electrónico.</p><p>Habiendo trabajado en varios proyectos de comercio electrónico, entiendo la importancia de páginas de carga rápida, flujos de pago optimizados e integraciones de pago confiables, todos cruciales para el éxito de Mercado Libre.</p>"
+  },
+  "projects": [
+    {
+      "id": "3",
+      "title_en": "E-commerce Platform",
+      "title_es": "Plataforma de E-commerce",
+      "thumbnail": "/assets/ecommerce.webp",
+      "tech": ["PostgreSQL", "Next.js", "Tailwind CSS", "Firebase Auth", "Algolia"],
+      "description_en": "Full-featured e-commerce platform with search, filters, cart, and secure checkout",
+      "description_es": "Plataforma completa de comercio electrónico con búsqueda, filtros, carrito y proceso de pago seguro"
+    },
+    {
+      "id": "5",
+      "title_en": "Payment Processing System",
+      "title_es": "Sistema de Procesamiento de Pagos",
+      "thumbnail": "/assets/chetalk.webp",
+      "tech": ["TypeScript", "React", "Node.js", "Express", "MongoDB"],
+      "description_en": "Secure payment processing system with multiple gateway integrations",
+      "description_es": "Sistema seguro de procesamiento de pagos con múltiples integraciones de pasarelas"
+    },
+    {
+      "id": "6",
+      "title_en": "Inventory Management",
+      "title_es": "Gestión de Inventario",
+      "thumbnail": "/assets/proveum.jpg",
+      "tech": ["React", "Next.js", "GraphQL", "PostgreSQL"],
+      "description_en": "Real-time inventory management system for e-commerce",
+      "description_es": "Sistema de gestión de inventario en tiempo real para comercio electrónico"
+    }
+  ],
+  "testimonials": [
+    {
+      "author": "Carlos Rodriguez",
+      "role": "Tech Lead",
+      "company": "E-Shop Solutions",
+      "text": {
+        "en": "Juan developed an exceptional e-commerce solution for us. His attention to detail and focus on performance resulted in a 35% increase in conversion rates.",
+        "es": "Juan desarrolló una solución de comercio electrónico excepcional para nosotros. Su atención al detalle y enfoque en el rendimiento resultó en un aumento del 35% en las tasas de conversión."
+      },
+      "avatarUrl": "https://randomuser.me/api/portraits/men/36.jpg"
+    }
+  ]
+}

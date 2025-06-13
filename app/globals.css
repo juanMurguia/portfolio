@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {  :root {
+    /* Default theme colors */
     --background: 0 0% 100%;
     --foreground: 0 84% 4.9%;
     --card: 0 0% 100%;
@@ -19,10 +20,20 @@
     --accent-foreground: 0 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
+    
+    /* Company-specific theme colors (default values) */
+    --primary-color: #3b82f6;
+    --secondary-color: #6366f1;
+    --theme-gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
     --radius: 0.5rem;
+    
+    /* Company theme variables with fallback values */
+    --primary-color: #3b82f6;
+    --secondary-color: #6366f1;
+    --theme-gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   }
   .dark {
     --background: 0 84% 4.9%;
@@ -82,6 +93,14 @@
   visibility: visible;
   z-index:0;
   }
+
+  .bg-primary {
+  background-color: var(--primary-color);
+}
+
+.bg-gradient {
+  background: var(--theme-gradient);
+}
 
   @keyframes bg-animation {
     0% { transform: translate(0,0) }

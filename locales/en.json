@@ -26,9 +26,16 @@
   "skills.category.performance": "Performance",
   "skills.category.tools": "Tools & Others",
   "menu.home": "Home",
-  "menu.portfolio": "Portfolio",
+  "menu.portfolio": "Projects",
   "menu.skills": "Skills",
   "menu.contact": "Contact",
-  "menu.download_cv": "Download CV",
-  "cardstack.tooltip": "Click to see next fact"
+  "menu.download_cv": "Download CV",  "cardstack.tooltip": "Click to see next fact",
+  "whyImAGreatFitFor": "¿Why I'm a great fit for",
+  "lock.welcome": "Welcome to my portfolio!",
+  "lock.greeting": "Hello, {companyName}! 👋",
+  "lock.description": "I've crafted something special just for you. Enter the secret code to unlock my personalized portfolio and discover how I can contribute to {companyName}'s success.",
+  "lock.placeholder": "Enter the secret code...",
+  "lock.button": "Unlock Portfolio ✨",
+  "lock.error": "Password is in my CV, try again! 💡",
+  "lock.footer": "This exclusive experience was designed just for "
 }
