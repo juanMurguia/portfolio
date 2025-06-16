@@ -58,14 +58,20 @@
   }
 }
 
-@layer base { body {
+@layer base { 
+  /* Default body styles for all pages */
+  body {
     color: #e0e0e0;
+    position: relative;
+  }
+  
+  /* Specific styles only for the main page, not for company pages */
+  .main-page-body {
     background-image: linear-gradient(90deg, #0a0000 0%, #1a0000 30%, #260000 70%, #100000 100%);
     background-attachment: fixed;
-    position: relative;
-    }
+  }
 
-   body::before {
+  .main-page-body::before {
     content: "";
     position: fixed;
     top: 0;

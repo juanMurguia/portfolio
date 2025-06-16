@@ -1,23 +1,22 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
-import { useRouter, useParams, useSearchParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import ProfileImg from "@/app/assets/profile.jpg";
-import { ThemeProvider } from "@/lib/context/theme";
-import { GlareCard } from "@/components/ui/glare-card";
 import { getCompanyData } from "@/lib/server action/getCompanyData";
-import Portfolio from "@/components/portfolio";
 import useLocale from "@/lib/context/useLocale";
-import styles from "./page.module.css"; // Assuming you have a CSS module for styles
 import PortfolioLock from "@/components/lock-screen/LockScreen";
+import { CompanyCard } from "@/components/CompanyCard";
+import { Badge } from "@/components/ui/badge";
+import { portfolioItems } from "@/lib/types/portfolio-items";
+import { ProjectCard } from "@/components/companies/ProjectCard";
+import { TestimonialsCarousel } from "@/components/companies/TestimonialsCarousel";
 
 // Main page component
 export default function CompanyPage() {
-  const router = useRouter();
   const params = useParams();
   const searchParams = useSearchParams();
-  const { t } = useLocale();
+  const { t, locale: contextLocale } = useLocale();
   const [companyData, setCompanyData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -25,41 +24,33 @@ export default function CompanyPage() {
   // Get the company slug from params
   const companySlug = params?.company as string;
 
-  // Determine locale based on browser language or URL param
-  const browserLocale = navigator.language;
+  // Determine locale based on context, browser language or URL param
+  const browserLocale =
+    typeof navigator !== "undefined" ? navigator.language : "en";
   const urlLocale = searchParams?.get("locale");
-  const locale = urlLocale || (browserLocale.includes("es") ? "es" : "en");
+  const locale =
+    contextLocale || urlLocale || (browserLocale.includes("es") ? "es" : "en");
 
   useEffect(() => {
-    // If company slug is not provided, redirect to the main page
-    if (!companySlug) {
-      router.push("/");
-      return;
-    }
-
-    // Fetch company data
+    // Fetch company data - this could be optimized since layout.tsx already fetches it
+    // In a production app, you might want to use React Context or state management to avoid duplicate fetches
     const fetchData = async () => {
       setLoading(true);
       try {
-        const companyData = await getCompanyData(companySlug);
-
-        if (!companyData) {
-          throw new Error("Failed to fetch company data");
+        const data = await getCompanyData(companySlug);
+        if (data) {
+          setCompanyData(data);
         }
-
-        console.log("Fetched company data:", companyData);
-        setCompanyData(companyData);
+        console.log("Company Data:", data);
       } catch (error) {
         console.error("Error fetching company data:", error);
-        // Redirect to home page on error
-        router.push("/");
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [companySlug, router]);
+  }, [companySlug]);
 
   // Show loading state while fetching data
   if (loading) {
@@ -75,11 +66,9 @@ export default function CompanyPage() {
     return null; // This will be redirected in the fetch function
   }
 
-  return (
-    <ThemeProvider
-      primaryColor={companyData.data.primaryColor}
-      secondaryColor={companyData.data.secondaryColor}
-    >
+  // If the portfolio is locked, show the lock screen
+  if (!isUnlocked) {
+    return (
       <PortfolioLock
         primaryColor={companyData.data.primaryColor}
         secondaryColor={companyData.data.secondaryColor}
@@ -89,92 +78,127 @@ export default function CompanyPage() {
           setIsUnlocked(true);
         }}
       >
-        <div
-          className={`flex-col px-8 gap-16 md:gap-36 flex ${styles.companyContainer}`}
-          style={{ backgroundColor: companyData.primaryColor }}
-        >
-          {/* Hero Section */}
-          <div className="flex flex-col md:flex-row justify-center w-full min-h-dvh items-center overflow-hidden gap-4 md:gap-8">
-            <div className="max-w-4xl cursor-default w-full flex flex-col items-start md:items-center justify-center text-center gap-6 p-4">
-              <h1 className="text-5xl text-left md:text-center md:text-6xl mb-2 text-white">
-                {companyData.data.heroTagline[locale as "en" | "es"]}
-              </h1>
+        {" "}
+      </PortfolioLock>
+    );
+  }
 
-              <div className="flex flex-row items-center justify-start md:justify-center gap-6 w-full">
-                <GlareCard className="h-auto py-4 md:py-2 px-4 flex flex-row items-center justify-center">
-                  <Image
-                    src={ProfileImg}
-                    alt="Juan Murguia"
-                    className="rounded-full w-16 h-16 md:w-20 md:h-20 object-cover"
-                    priority
-                  />
-                  <div className="ml-4">
-                    <h2 className="text-2xl font-bold">Juan Murguia</h2>
-                    <p className="text-sm opacity-80">Software Developer</p>
-                  </div>
-                </GlareCard>
-
-                {companyData.data.logoUrl && (
-                  <GlareCard className="h-auto py-4 md:py-2 px-4 flex flex-col items-center justify-center">
-                    <Image
-                      src={
-                        companyData.data.logoUrl.startsWith("//")
-                          ? `https:${companyData.data.logoUrl}`
-                          : companyData.data.logoUrl
-                      }
-                      alt={`${companyData.data.name} logo`}
-                      className="w-auto h-12 md:h-16 object-contain"
-                      width={200}
-                      height={80}
-                    />
-                    <p className="text-sm mt-2">For {companyData.data.name}</p>
-                  </GlareCard>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Why I'm a Good Fit Section */}
-          <div
-            id="why-fit"
-            className="flex flex-col items-center gap-8 max-w-4xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-center">
-              {t("whyImAGreatFitFor")} {companyData.data.name}?
-            </h2>
-            <div
-              className="prose prose-invert max-w-none"
-              dangerouslySetInnerHTML={{
-                __html: companyData.data.whyFit?.[locale as "en" | "es"],
+  return (
+    <>
+      <div
+        className={`flex-col px-8 gap-16 md:gap-36 flex `}
+        style={{ backgroundColor: `#${companyData.data.primaryColor}` }}
+      >
+        {/* Hero Section */}
+        <div className="flex flex-col md:flex-row justify-center w-full min-h-dvh items-center overflow-hidden gap-4 md:gap-8">
+          <div className="max-w-4xl cursor-default w-full flex flex-col items-start md:items-center justify-center text-center gap-6 p-4">
+            <Badge
+              variant="outline"
+              className=" px-4 py-2 rounded-full text-xs shadow-none"
+              style={{
+                backgroundColor: `#${companyData.data.primaryColor}`,
+                color: `#${companyData.data.secondaryColor}`,
+                borderColor: `#${companyData.data.secondaryColor}`,
               }}
-            />
-          </div>
+            >
+              {t("crafted.for")} {companyData.data.name}
+            </Badge>
+            <h1
+              className="text-5xl text-left md:text-center md:text-6xl mb-2 font-bold"
+              style={{ color: `#${companyData.data.secondaryColor}` }}
+            >
+              {companyData.data.heroTagline[locale as "en" | "es"]}
+            </h1>
 
-          {/* Project Highlights Section */}
-          <div
-            id="project-highlights"
-            className="flex flex-col items-center gap-8 max-w-6xl mx-auto"
-          >
-            <Portfolio />
+            <div className="flex flex-row items-center justify-start md:justify-center gap-4 w-full">
+              <CompanyCard
+                name="Juan Murguia"
+                role="Software Developer"
+                image={ProfileImg.src}
+                primaryColor={companyData.data.primaryColor}
+                secondaryColor={companyData.data.secondaryColor}
+                isPersonal={true}
+              />
+              <span className="text-2xl text-white">{"🤝"}</span>
+              {companyData.data.logoUrl && (
+                <CompanyCard
+                  name={companyData.data.name}
+                  image={companyData.data.logoUrl}
+                  primaryColor={companyData.data.primaryColor}
+                  secondaryColor={companyData.data.secondaryColor}
+                  isPersonal={false}
+                />
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Testimonials Section - Conditionally Rendered */}
-        {companyData.testimonials && companyData.testimonials.length > 0 && (
-          <div
-            id="testimonials"
-            className="flex flex-col items-center gap-8 max-w-4xl mx-auto"
+        {/* Why I'm a Good Fit Section */}
+        <div
+          id="why-fit"
+          className="flex flex-col items-center gap-8 max-w-4xl mx-auto min-h-[80dvh]"
+        >
+          <h2
+            className="text-3xl md:text-4xl font-bold text-center"
+            style={{ color: `#${companyData.data.secondaryColor}` }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-center">
-              What People Say
-            </h2>
+            {t("whyImAGreatFitFor")} {companyData.data.name}?
+          </h2>
+          <p
+            className="text-3xl md:text-xl  text-center"
+            style={{ color: `#${companyData.data.secondaryColor}` }}
+          >
+            {companyData.data.whyFit?.[locale as "en" | "es"]}
+          </p>
+        </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <h2> Testimonials </h2>
-            </div>
+        {/* Project Highlights Section */}
+        <div
+          id="project-highlights"
+          className="flex flex-col items-center gap-8 max-w-4xl mx-auto min-h-[80dvh]"
+        >
+          <h2
+            className="text-3xl md:text-4xl font-bold text-center"
+            style={{ color: `#${companyData.data.secondaryColor}` }}
+          >
+            {t("portfolio.title")}
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-6xl">
+            {portfolioItems.map((item) => (
+              <ProjectCard
+                key={item.id}
+                title={item.title}
+                category={t(item.categoryKey)}
+                description={t(item.descriptionKey)}
+                technologies={item.technologies}
+                image={item.image}
+                liveUrl={item.liveUrl}
+                primaryColor={companyData.data.primaryColor}
+                secondaryColor={companyData.data.secondaryColor}
+              />
+            ))}
           </div>
-        )}
-      </PortfolioLock>
-    </ThemeProvider>
+        </div>
+        {/* Testimonials Section - Conditionally Rendered */}
+
+        <div
+          id="testimonials"
+          className="flex flex-col items-center gap-8 max-w-4xl mx-auto min-h-[80dvh]"
+        >
+          <h2
+            className="text-3xl md:text-4xl font-bold text-center"
+            style={{ color: `#${companyData.data.secondaryColor}` }}
+          >
+            {t("testimonials.title")}
+          </h2>
+
+          <TestimonialsCarousel
+            primaryColor={companyData.data.primaryColor}
+            secondaryColor={companyData.data.secondaryColor}
+          />
+        </div>
+      </div>
+    </>
   );
 }

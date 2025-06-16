@@ -17,7 +17,7 @@ export default function Home() {
         <div>
           <Hello />
         </div>
-        <div id="about-me">
+        <div id="about-me py-44">
           <AboutMe />
         </div>
         <div id="portfolio" className="min-h-screen">

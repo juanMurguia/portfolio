@@ -46,6 +46,7 @@ export async function fetchCompanyData(slug: string) {
       en: item.whyFitEn,
       es: item.whyFitEs,
     },
+    password: item.password,
     isVisible: item.isVisible,
   };
 

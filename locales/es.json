@@ -33,9 +33,11 @@
   "whyImAGreatFitFor": "¿Por qué soy un gran candidato para",
   "lock.welcome": "¡Bienvenido!",
   "lock.greeting": "¡Hola, {companyName}! 👋",
-  "lock.description": "He creado algo especial solo para ustedes. Ingresá el código secreto para desbloquear mi portafolio personalizado y descubrí cómo puedo contribuir al éxito de {companyName}.",
+"lock.description": "Creé algo especial para ustedes. Ingresá el código de mi CV y descubrí cómo puedo aportar en {companyName}.",
   "lock.placeholder": "Ingresá el código secreto...",
   "lock.button": "Desbloquear Portafolio ✨",
   "lock.error": "La contraseña está en mi CV, ¡intentalo de nuevo! 💡",
-  "lock.footer": "Esta experiencia exclusiva fue diseñada especialmente para"
+  "lock.footer": "Esta experiencia exclusiva fue diseñada especialmente para",
+  "crafted.for":"Hecho para",
+  "testimonials.title": "Palabras de quienes trabajaron conmigo"
 }

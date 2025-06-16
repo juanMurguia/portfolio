@@ -22,7 +22,6 @@ export default function PortfolioLock({
   primaryColor,
   secondaryColor,
   companyName,
-  personalizedMessage,
   correctPassword,
   onUnlock,
   children,
@@ -50,30 +49,6 @@ export default function PortfolioLock({
     }
   };
 
-  const FloatingParticle = ({ delay }: { delay: number }) => (
-    <motion.div
-      className="absolute w-2 h-2 rounded-full opacity-30"
-      style={{
-        background: `linear-gradient(45deg, ${primaryColor}, ${secondaryColor})`,
-      }}
-      animate={{
-        y: [-20, -100],
-        x: [0, Math.random() * 100 - 50],
-        opacity: [0.3, 0, 0.3, 0],
-      }}
-      transition={{
-        duration: 4,
-        repeat: Number.POSITIVE_INFINITY,
-        delay,
-        ease: "easeOut",
-      }}
-      initial={{
-        left: `${Math.random() * 100}%`,
-        bottom: 0,
-      }}
-    />
-  );
-
   if (isUnlocked) {
     return (
       <motion.div
@@ -81,9 +56,6 @@ export default function PortfolioLock({
         animate={{ scale: 1.1, opacity: 0 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
         className="fixed inset-0 z-50"
-        style={{
-          background: `linear-gradient(135deg, ${primaryColor}20, ${secondaryColor}20)`,
-        }}
       >
         <div className="flex items-center justify-center h-full">
           <motion.div
@@ -122,9 +94,6 @@ export default function PortfolioLock({
           exit={{ opacity: 0, scale: 1.1 }}
           transition={{ duration: 0.5 }}
           className="fixed inset-0 z-50 overflow-hidden"
-          style={{
-            background: `linear-gradient(135deg, ${primaryColor}15, ${secondaryColor}15, ${primaryColor}10)`,
-          }}
         >
           {/* Animated Background */}
           <div className="absolute inset-0">
@@ -132,9 +101,9 @@ export default function PortfolioLock({
               className="absolute inset-0 opacity-20"
               animate={{
                 background: [
-                  `radial-gradient(circle at 20% 50%, ${primaryColor}30 0%, transparent 50%)`,
-                  `radial-gradient(circle at 80% 50%, ${secondaryColor}30 0%, transparent 50%)`,
-                  `radial-gradient(circle at 40% 80%, ${primaryColor}30 0%, transparent 50%)`,
+                  `radial-gradient(circle at 20% 50%, ${primaryColor}, transparent 50%)`,
+                  `radial-gradient(circle at 80% 50%, ${secondaryColor}, transparent 50%)`,
+                  `radial-gradient(circle at 40% 80%, ${primaryColor}, transparent 50%)`,
                 ],
               }}
               transition={{
@@ -145,13 +114,11 @@ export default function PortfolioLock({
             />
           </div>
 
-          {/* Floating Particles */}
-          {Array.from({ length: 15 }).map((_, i) => (
-            <FloatingParticle key={i} delay={i * 0.3} />
-          ))}
-
           {/* Main Content */}
-          <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
+          <div
+            className="relative z-20 flex items-center justify-center min-h-screen p-4 "
+            style={{ backgroundColor: `#${secondaryColor}` }}
+          >
             <motion.div
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -169,9 +136,9 @@ export default function PortfolioLock({
                   whileHover={{ scale: 1.1 }}
                   animate={{
                     filter: [
-                      `drop-shadow(0 0 20px ${primaryColor}40)`,
-                      `drop-shadow(0 0 30px ${secondaryColor}40)`,
-                      `drop-shadow(0 0 20px ${primaryColor}40)`,
+                      `drop-shadow(0 0 20px ${primaryColor}99)`,
+                      `drop-shadow(0 0 30px ${secondaryColor}99)`,
+                      `drop-shadow(0 0 20px ${primaryColor}99)`,
                     ],
                   }}
                   transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
@@ -186,7 +153,10 @@ export default function PortfolioLock({
                       ease: "linear",
                     }}
                   >
-                    <Sparkles size={20} style={{ color: secondaryColor }} />
+                    <Sparkles
+                      size={20}
+                      style={{ color: `#${primaryColor}44` }}
+                    />
                   </motion.div>
                 </motion.div>
               </motion.div>
@@ -202,15 +172,15 @@ export default function PortfolioLock({
                 <h1
                   className="text-3xl font-bold mb-4"
                   style={{
-                    background: ` ${primaryColor}`,
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
+                    color: `#${primaryColor}`,
                   }}
                 >
                   {t("lock.greeting").replace("{companyName}", companyName)}
                 </h1>{" "}
-                <p className="text-gray-600 text-lg leading-relaxed">
+                <p
+                  className="text-lg font-light"
+                  style={{ color: `#${primaryColor}` }}
+                >
                   {t("lock.description").replace("{companyName}", companyName)}
                 </p>
               </motion.div>
@@ -233,18 +203,21 @@ export default function PortfolioLock({
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder={t("lock.placeholder")}
+                      maxLength={10}
+                      required
                       className="pr-12 h-14 text-lg border-2 transition-all duration-300 focus:border-opacity-50"
                       style={{
-                        borderColor: `${primaryColor}40`,
-                        boxShadow: `0 0 0 0px ${primaryColor}20`,
+                        borderColor: `#${primaryColor}88`,
+                        color: `#${primaryColor}`,
+                        boxShadow: `0 0 0 0px ${primaryColor}33`,
                       }}
                       onFocus={(e) => {
                         e.target.style.borderColor = primaryColor;
-                        e.target.style.boxShadow = `0 0 20px ${primaryColor}30`;
+                        e.target.style.boxShadow = `0 0 20px #${primaryColor}66`;
                       }}
                       onBlur={(e) => {
-                        e.target.style.borderColor = `${primaryColor}40`;
-                        e.target.style.boxShadow = `0 0 0 0px ${primaryColor}20`;
+                        e.target.style.borderColor = `${primaryColor}99`;
+                        e.target.style.boxShadow = `0 0 0 0px #${primaryColor}33`;
                       }}
                     />
                     <Button
@@ -269,16 +242,20 @@ export default function PortfolioLock({
                 >
                   <Button
                     type="submit"
-                    className="w-full h-14 text-lg font-semibold transition-all duration-300 }`]"
+                    variant={undefined}
+                    className="w-full h-14 text-lg font-semibold transition-all duration-300 "
                     style={{
-                      background: ` ${primaryColor}`,
+                      backgroundColor: `#${primaryColor}`,
+                      color: `#${secondaryColor}`,
                       border: "none",
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = `0 10px 30px ${primaryColor}40`;
+                      e.currentTarget.style.boxShadow = `0 10px 30px ${primaryColor}`;
+                      e.currentTarget.style.opacity = "0.9";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.boxShadow = "none";
+                      e.currentTarget.style.opacity = "1";
                     }}
                   >
                     <motion.span

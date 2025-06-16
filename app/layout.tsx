@@ -5,6 +5,7 @@ import "./globals.css";
 import { LocaleProvider } from "@/lib/context/locale";
 import LanguageSwitcher from "@/components/language-switcher";
 import CursorLight from "@/components/cursor-light";
+import PageBackground from "@/components/page-background";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -55,13 +56,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${inter.variable} ${firaCode.variable} font-sans bg-vscode-bg text-vscode-text min-h-screen`}
+        className={`${inter.variable} ${firaCode.variable} font-sans min-h-screen`}
       >
         <LocaleProvider>
-          <div className="bg-noise" aria-hidden="true" />
+          <PageBackground />
           <CursorLight />
           <div className="relative z-10">
-            <div className="fixed top-4 right-4 z-20">
+            <div className="fixed top-4 right-4 z-100">
               <LanguageSwitcher />
             </div>
             {children}
