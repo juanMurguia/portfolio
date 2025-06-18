@@ -15,7 +15,7 @@ const tabs = [
   { id: "skills", label: "skills" },
 ];
 
-const socialLinks = [
+export const socialLinks = [
   {
     title: "LinkedIn",
     icon: <Linkedin size={20} />,

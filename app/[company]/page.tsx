@@ -11,6 +11,9 @@ import { Badge } from "@/components/ui/badge";
 import { portfolioItems } from "@/lib/types/portfolio-items";
 import { ProjectCard } from "@/components/companies/ProjectCard";
 import { TestimonialsCarousel } from "@/components/companies/TestimonialsCarousel";
+import Experience from "@/components/companies/Experience";
+import { FloatingDockCompanies } from "@/components/companies/FloatingDockCompanies";
+import { socialLinks } from "@/components/layout";
 
 // Main page component
 export default function CompanyPage() {
@@ -86,23 +89,28 @@ export default function CompanyPage() {
   return (
     <>
       <div
-        className={`flex-col px-8 gap-16 md:gap-36 flex `}
+        className={`flex-col px-8 gap-16 md:gap-36 flex items-center`}
         style={{ backgroundColor: `#${companyData.data.primaryColor}` }}
       >
+        <FloatingDockCompanies
+          mobileClassName="fixed top-10 z-50"
+          items={socialLinks}
+          desktopClassName="fixed top-4 z-50"
+          primaryColor={`#${companyData.data.primaryColor}`}
+          secondaryColor={`#${companyData.data.secondaryColor}`}
+        />
         {/* Hero Section */}
         <div className="flex flex-col md:flex-row justify-center w-full min-h-dvh items-center overflow-hidden gap-4 md:gap-8">
           <div className="max-w-4xl cursor-default w-full flex flex-col items-start md:items-center justify-center text-center gap-6 p-4">
-            <Badge
-              variant="outline"
-              className=" px-4 py-2 rounded-full text-xs shadow-none"
+            <h4
+              className=" rounded-full text-md font-light shadow-none"
               style={{
                 backgroundColor: `#${companyData.data.primaryColor}`,
                 color: `#${companyData.data.secondaryColor}`,
-                borderColor: `#${companyData.data.secondaryColor}`,
               }}
             >
               {t("crafted.for")} {companyData.data.name}
-            </Badge>
+            </h4>
             <h1
               className="text-5xl text-left md:text-center md:text-6xl mb-2 font-bold"
               style={{ color: `#${companyData.data.secondaryColor}` }}
@@ -119,7 +127,14 @@ export default function CompanyPage() {
                 secondaryColor={companyData.data.secondaryColor}
                 isPersonal={true}
               />
-              <span className="text-2xl text-white">{"🤝"}</span>
+              <span
+                className="text-2xl text-white font-extralight"
+                style={{
+                  color: `#${companyData.data.secondaryColor}`,
+                }}
+              >
+                {"x"}
+              </span>
               {companyData.data.logoUrl && (
                 <CompanyCard
                   name={companyData.data.name}
@@ -150,6 +165,17 @@ export default function CompanyPage() {
           >
             {companyData.data.whyFit?.[locale as "en" | "es"]}
           </p>
+        </div>
+
+        {/* Experience Section */}
+        <div
+          id="experience"
+          className="flex flex-col items-center gap-8 max-w-4xl mx-auto min-h-[80dvh]"
+        >
+          <Experience
+            primaryColor={`#${companyData.data.primaryColor}`}
+            secondaryColor={`#${companyData.data.secondaryColor}`}
+          />
         </div>
 
         {/* Project Highlights Section */}
@@ -184,7 +210,7 @@ export default function CompanyPage() {
 
         <div
           id="testimonials"
-          className="flex flex-col items-center gap-8 max-w-4xl mx-auto min-h-[80dvh]"
+          className="flex flex-col items-center gap-8 max-w-4xl mx-auto min-h-[90dvh]"
         >
           <h2
             className="text-3xl md:text-4xl font-bold text-center"

@@ -21,7 +21,7 @@ export const CompanyCard = ({
 }: CompanyCardProps) => {
   return (
     <div
-      className="relative overflow-hidden rounded-xl p-4 w-[220px] h-[60px] flex items-center gap-3"
+      className="relative overflow-hidden rounded-2xl p-4 w-[220px] h-[60px] flex items-center gap-3"
       style={{
         backgroundColor: `#${primaryColor}`,
         color: secondaryColor,
@@ -47,7 +47,7 @@ export const CompanyCard = ({
         </h3>
         {role && (
           <p
-            className="text-xs opacity-60"
+            className="text-xs opacity-70 font-normal"
             style={{ color: `#${secondaryColor}` }}
           >
             {role}

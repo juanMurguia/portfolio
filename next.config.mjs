@@ -8,6 +8,7 @@ const nextConfig = {
       "github.com", // Github profile pictures
       "linkedin.com", // LinkedIn profile pictures
       "images.ctfassets.net",
+      "media.licdn.com",
     ],
   },
 };

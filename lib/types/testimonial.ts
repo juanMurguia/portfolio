@@ -5,4 +5,5 @@ export interface Testimonial {
   company: string;
   image: string;
   testimonialKey: string;
+  profileUrl: "https://www.linkedin.com/in/luciano-a/";
 }

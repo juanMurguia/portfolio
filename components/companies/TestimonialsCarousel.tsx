@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { testimonials } from "@/lib/data/testimonials";
 import useLocale from "@/lib/context/useLocale";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Linkedin } from "lucide-react";
 
 interface TestimonialsCarouselProps {
   primaryColor: string;
@@ -16,6 +16,7 @@ export function TestimonialsCarousel({
   secondaryColor,
 }: TestimonialsCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const { t } = useLocale();
 
   const nextSlide = () => {
@@ -29,12 +30,18 @@ export function TestimonialsCarousel({
   };
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 5000);
-    return () => clearInterval(timer);
-  }, []);
+    if (!isPaused) {
+      const timer = setInterval(nextSlide, 6000);
+      return () => clearInterval(timer);
+    }
+  }, [isPaused]);
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto px-4">
+    <div
+      className="relative w-full max-w-4xl mx-auto"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <div className="overflow-hidden">
         <div
           className="flex transition-transform duration-500 ease-in-out  rounded-3xl"
@@ -60,18 +67,26 @@ export function TestimonialsCarousel({
                   />
                 </div>
                 <blockquote
-                  className="text-lg italic mb-4"
+                  className="text-md italic mb-4"
                   style={{ color: `#${secondaryColor}` }}
                 >
                   "{t(testimonial.testimonialKey)}"
                 </blockquote>
                 <div>
-                  <h4
-                    className="font-bold text-lg"
+                  <a
+                    href={testimonial.profileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 text-sm underline font-medium"
                     style={{ color: `#${secondaryColor}` }}
                   >
-                    {testimonial.name}
-                  </h4>
+                    <h4
+                      className="font-bold text-lg"
+                      style={{ color: `#${secondaryColor}` }}
+                    >
+                      {testimonial.name}
+                    </h4>
+                  </a>
                   <p
                     className="text-sm"
                     style={{ color: `#${secondaryColor}90` }}
