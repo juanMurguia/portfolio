@@ -26,7 +26,8 @@
   "skills.category.performance": "Performance",
   "skills.category.tools": "Otros",
   "menu.home": "Inicio",
-  "menu.portfolio": "Productos de los que estoy orgulloso",
+  "menu.portfolio": "Estoy orgulloso de estos productos",
+  "menu.portfolio.subtitle":"Diseño, desarrollo e impacto real. Todo hecho con un propósito.",
   "menu.skills": "Habilidades",
   "menu.contact": "Contacto",
   "menu.download_cv": "Descargar CV",  
@@ -42,8 +43,8 @@
   "lock.footer": "Esta experiencia exclusiva fue diseñada especialmente para",
   "crafted.for":"Hecho para",
   "testimonials.viewProfile": "Ver perfil",
-  "testimonials.title": "Pero no tenés que creerme solo a mí...",
-  "testimonials.subtitle": "Así opinan quienes trabajaron conmigo",
+  "testimonials.title": "Y esto es lo que dicen quienes trabajaron conmigo",
+  "testimonials.subtitle": "Ya viste lo que hago, ahora conocé cómo es trabajar conmigo.",
   "testimonial.darelis": "Excelente compañero. Siempre estuvo dispuesto a colaborar y a dar una mano cuando alguien lo necesitaba. Tiene una gran comunicación y claridad para explicar, lo cual me ayudó mucho especialmente cuando tenía dudas con temas de código. Sin dudas, es un compañero con el que da gusto trabajar.",
   "testimonial.julieta": "Trabajar con Juan fue siempre una experiencia muy positiva. Es un profesional responsable, cumplidor y comprometido con su trabajo. Se destaca por su capacidad para resolver problemas de forma eficiente, cumplir con los plazos y mantener una calidad constante en lo que hace. Desde lo técnico, tiene muy buenos conocimientos y siempre mostró una actitud proactiva para aprender y mejorar. Además está dispuesto a ayudar, comparte lo que sabe y genera un buen ambiente de trabajo.",
   "testimonial.ezequiel": "Buena persona y compañero, proactivo, responsable y con ganas de aprender.",
@@ -70,6 +71,6 @@
     "experience.universal.achievement2.title": "Optimización UX:",
   "experience.universal.achievement2.description": "Reestructuración de la plataforma de comercio electrónico y la arquitectura del sitio web basado en análisis de mapas de calor y datos de comportamiento del usuario, mejorando drásticamente la experiencia de usuario y la navegación.",
   "cta.final.title": "Construyamos lo que sigue, juntos.",
-"cta.final.thanks": "Gracias por leer hasta acá. Si algo de todo esto te copó, charlemos.",
+"cta.final.thanks": "Gracias por leer hasta acá. Si algo de todo esto te gustó, charlemos.",
 "cta.final.button": "Hablemos"
 }

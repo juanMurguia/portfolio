@@ -1,57 +1,59 @@
 import { createClient } from "contentful";
 
-/**
- * Fetches company data from the API
- * @param slug The company slug to fetch data for
- * @returns The company data or the default data if the fetch fails
- */
-
-const client = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID!,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN!,
-});
-
 export async function fetchCompanyData(slug: string) {
-  const entries = await client.getEntries({
-    content_type: "customPortfolioCompanies",
-    "fields.slug": slug,
-    "fields.isVisible": true,
-    include: 1,
-  });
+  try {
+    if (
+      !process.env.CONTENTFUL_SPACE_ID ||
+      !process.env.CONTENTFUL_ACCESS_TOKEN
+    ) {
+      console.error("Contentful credentials missing");
+      throw new Error("Configuration error: Contentful credentials missing");
+    }
 
-  if (!entries.items.length) throw new Error("Company not found");
-  console.log(
-    "Raw Contentful data:",
-    JSON.stringify(entries.items[0].fields, null, 2)
-  );
+    const client = createClient({
+      space: process.env.CONTENTFUL_SPACE_ID,
+      accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+    });
 
-  const item = entries.items[0].fields;
+    const entries = await client.getEntries({
+      content_type: "customPortfolioCompanies",
+      "fields.slug": slug,
+      "fields.isVisible": true,
+      include: 1,
+    });
 
-  const result = {
-    slug: item.slug,
-    name: item.name,
-    logoUrl:
-      ((item.logo as any)?.fields?.file?.url &&
-        ((item.logo as any)?.fields?.file?.url.startsWith("//")
-          ? `https:${(item.logo as any).fields.file.url}`
-          : (item.logo as any).fields.file.url)) ??
-      null,
-    primaryColor: item.primaryColor,
-    secondaryColor: item.secondaryColor,
-    heroTagline: {
-      en: item.heroTaglineEn,
-      es: item.heroTaglineEs,
-    },
-    whyFit: {
-      en: item.whyFitEn,
-      es: item.whyFitEs,
-    },
-    password: item.password,
-    isVisible: item.isVisible,
-  };
+    if (!entries.items.length) {
+      console.error(`Company not found: ${slug}`);
+      throw new Error("Company not found");
+    }
 
-  // Log the transformed data
-  console.log("Transformed data:", JSON.stringify(result, null, 2));
+    const item = entries.items[0].fields;
 
-  return result;
+    // Return the transformed data
+    return {
+      slug: item.slug,
+      name: item.name,
+      logoUrl:
+        ((item.logo as any)?.fields?.file?.url &&
+          ((item.logo as any)?.fields?.file?.url.startsWith("//")
+            ? `https:${(item.logo as any).fields.file.url}`
+            : (item.logo as any).fields.file.url)) ??
+        null,
+      primaryColor: item.primaryColor || "18181b",
+      secondaryColor: item.secondaryColor || "ffffff",
+      heroTagline: {
+        en: item.heroTaglineEn || "",
+        es: item.heroTaglineEs || "",
+      },
+      whyFit: {
+        en: item.whyFitEn || "",
+        es: item.whyFitEs || "",
+      },
+      password: item.password || "",
+      isVisible: item.isVisible,
+    };
+  } catch (error) {
+    console.error(`Error fetching company data for slug "${slug}":`, error);
+    throw error; // Rethrow to handle in the server action
+  }
 }
