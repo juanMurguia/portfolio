@@ -70,7 +70,7 @@ export function TestimonialsCarousel({
                   className="text-md italic mb-4 px-16"
                   style={{ color: `#${secondaryColor}` }}
                 >
-                  "{t(testimonial.testimonialKey)}"
+                  &quot;{t(testimonial.testimonialKey)}&quot;
                 </blockquote>
                 <div>
                   <a

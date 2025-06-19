@@ -66,7 +66,7 @@ const Experience = ({
             <div className="ml-16 md:ml-0 md:w-1/2 md:pr-4">
               <Card
                 className={cn(
-                  "backdrop-blur-sm border-white/20 transition-all duration-500 hover:scale-105 group",
+                  "backdrop-blur-sm border-white/20 transition-all duration-500 hover:scale-105 group shadow-2xl",
                   "hover:bg-white/15"
                 )}
                 style={{
@@ -234,7 +234,7 @@ const Experience = ({
             <div className="ml-16 md:ml-0 md:w-1/2 pl-4">
               {" "}
               <Card
-                className="backdrop-blur-sm border-white/20 transition-all duration-500 hover:scale-105 group"
+                className="backdrop-blur-sm border-white/20 transition-all duration-500 hover:scale-105 group shadow-2xl"
                 style={{
                   backgroundColor: `${primaryColor}20`, // 20% opacity to differentiate from parent background
                 }}

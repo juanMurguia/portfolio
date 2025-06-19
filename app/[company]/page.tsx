@@ -82,12 +82,10 @@ export default function CompanyPage() {
     );
   }
 
-  // In case of error or no data
   if (!companyData) {
     return null; // This will be redirected in the fetch function
   }
 
-  // Use AnimatePresence for lock/unlock transitions
   return (
     <div style={{ cursor: "none!important" }}>
       <AnimatePresence mode="wait">
@@ -114,13 +112,7 @@ export default function CompanyPage() {
             </PortfolioLock>
           </motion.div>
         ) : (
-          <motion.div
-            key="main"
-            initial={{ y: "-100vh", opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-          >
+          <motion.div key="main">
             {/* Main unlocked content */}
             <div className={styles.grainOverlay} />
             <CompanyCursorLight color={`rgba(255,255,255, 0.3)`} size={500} />
