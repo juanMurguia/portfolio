@@ -21,5 +21,5 @@ export default function PageBackground() {
   }, [pathname]);
 
   // Only render the noise background on the main page
-  return isMainPage ? <div className="bg-noise" aria-hidden="true" /> : null;
+  return <div className="bg-noise" aria-hidden="true" />;
 }

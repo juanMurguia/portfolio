@@ -5,7 +5,6 @@
  **/
 
 import { cn } from "@/lib/utils";
-import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import { ArrowUp, ArrowUpIcon, Plus, User } from "lucide-react";
 import {
   AnimatePresence,

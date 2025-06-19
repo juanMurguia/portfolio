@@ -21,7 +21,8 @@ export default function LanguageSwitcher() {
   return (
     <button
       onClick={() => setLocale(locale === "en" ? "es" : "en")}
-      className="px-3 py-1 text-xs opacity-50 rounded-full  bg-white text-gray-900 hover:opacity-90 transition-opacity duration-300 "
+      style={{ lineHeight: "1.5" }}
+      className="z-50 m-0 flex items-center justify-center px-3 py-1 text-xs opacity-50 rounded-full  bg-white text-gray-900 hover:opacity-90 transition-opacity duration-300 "
     >
       {locale === "en" ? "ES" : "EN"}
     </button>

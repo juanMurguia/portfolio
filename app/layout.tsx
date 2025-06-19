@@ -59,10 +59,11 @@ export default function RootLayout({
         className={`${inter.variable} ${firaCode.variable} font-sans min-h-screen`}
       >
         <LocaleProvider>
+          {" "}
           <PageBackground />
           <CursorLight />
           <div className="relative z-10">
-            <div className="fixed top-4 right-4 z-100">
+            <div className="fixed top-4 right-4" style={{ zIndex: 9999 }}>
               <LanguageSwitcher />
             </div>
             {children}

@@ -1,4 +1,5 @@
 import { headers } from "next/headers";
+import { ReadonlyURLSearchParams } from "next/navigation";
 
 /**
  * Extracts the brand key from the request headers or search params

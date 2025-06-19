@@ -123,50 +123,23 @@
 }
 }
 
-@layer components {
-  .tab {
-    @apply relative px-4 py-2 border-t border-transparent hover:bg-vscode-bg-light transition-colors;
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.8s cubic-bezier(0.4,0,0.2,1) both;
   }
-  
-  .tab.active {
-    @apply border-t-2 border-vscode-tab-active bg-vscode-bg-light;
-  }
-  
-  .code-line {
-    @apply font-mono text-sm leading-relaxed;
-  }
-  
-  .comment {
-    @apply text-vscode-comment;
-  }
-  
-  .keyword {
-    @apply text-vscode-keyword;
-  }
-  
-  .string {
-    @apply text-vscode-string;
-  }
-  
-  .variable {
-    @apply text-vscode-variable;
-  }
-  
-  .function {
-    @apply text-vscode-function;
-  }
-  
-  .section-container {
-    @apply max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8;
-  }
-    .project-card {
-    @apply bg-vscode-bg-light border border-vscode-border rounded-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[rgba(255,50,50,0.1)];
-  }
-  
-  .btn {
-    @apply px-4 py-2 rounded-md transition-colors font-mono text-sm;
-  }
-    .btn-primary {
-    @apply bg-[rgba(255,50,50,0.2)] text-vscode-accent hover:bg-[rgba(255,50,50,0.3)];
+  .delay-200 {
+    animation-delay: 0.2s;
   }
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

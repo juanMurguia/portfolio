@@ -95,30 +95,20 @@ export default function PortfolioLock({
           transition={{ duration: 0.5 }}
           className="fixed inset-0 z-50 overflow-hidden"
         >
-          {/* Animated Background */}
-          <div className="absolute inset-0">
-            <motion.div
-              className="absolute inset-0 opacity-20"
-              animate={{
-                background: [
-                  `radial-gradient(circle at 20% 50%, ${primaryColor}, transparent 50%)`,
-                  `radial-gradient(circle at 80% 50%, ${secondaryColor}, transparent 50%)`,
-                  `radial-gradient(circle at 40% 80%, ${primaryColor}, transparent 50%)`,
-                ],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "linear",
-              }}
-            />
-          </div>
-
           {/* Main Content */}
           <div
             className="relative z-20 flex items-center justify-center min-h-screen p-4 "
             style={{ backgroundColor: `#${secondaryColor}` }}
           >
+            {/* Add dynamic style for placeholder color */}
+            <style>
+              {`
+                .custom-placeholder::placeholder {
+                  color: #${primaryColor}99;
+                  opacity: 1;
+                }
+              `}
+            </style>
             <motion.div
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -205,7 +195,7 @@ export default function PortfolioLock({
                       placeholder={t("lock.placeholder")}
                       maxLength={10}
                       required
-                      className="pr-12 h-14 text-lg border-2 transition-all duration-300 focus:border-opacity-50"
+                      className="pr-12 h-14 text-lg border-2 transition-all duration-300 focus:border-opacity-50 custom-placeholder"
                       style={{
                         borderColor: `#${primaryColor}88`,
                         color: `#${primaryColor}`,
@@ -286,7 +276,8 @@ export default function PortfolioLock({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1 }}
-                className="text-center mt-8 text-sm text-gray-500"
+                className="text-center mt-8 text-sm"
+                style={{ color: `#${primaryColor}95` }}
               >
                 {" "}
                 <p>

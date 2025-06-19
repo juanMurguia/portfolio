@@ -19,10 +19,16 @@ const Experience = ({
     <div className="mb-16">
       {" "}
       <h2
-        className="text-3xl md:text-4xl font-bold text-center mb-16"
+        className="text-3xl md:text-4xl font-bold text-center mb-4"
         style={{ color: `${secondaryColor}` }}
       >
         {t("experience.title")}
+      </h2>
+      <h2
+        className="text-md font-light text-center mb-16"
+        style={{ color: `${secondaryColor}` }}
+      >
+        {t("experience.subtitle")}
       </h2>
       <div className="max-w-4xl mx-auto relative">
         {" "}
@@ -178,31 +184,28 @@ const Experience = ({
                   </div>{" "}
                   {/* Skills Tags */}
                   <div className="flex flex-wrap gap-2 mt-4">
-                    {[
-                      "React",
-                      "TypeScript",
-                      "API Integration",
-                      "Performance Optimization",
-                      "Bug Resolution",
-                    ].map((skill, index) => (
-                      <Badge
-                        key={index}
-                        variant="outline"
-                        className="text-xs transition-colors hover:bg-opacity-10"
-                        style={{
-                          borderColor: `${secondaryColor}30`,
-                          color: secondaryColor,
-                        }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.backgroundColor = `${secondaryColor}20`;
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.backgroundColor = "transparent";
-                        }}
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
+                    {["Next", "React", ".NET MAUI", "Blazor", "C#"].map(
+                      (skill, index) => (
+                        <Badge
+                          key={index}
+                          variant="outline"
+                          className="text-xs transition-colors hover:bg-opacity-10"
+                          style={{
+                            borderColor: `${secondaryColor}30`,
+                            color: secondaryColor,
+                          }}
+                          onMouseOver={(e) => {
+                            e.currentTarget.style.backgroundColor = `${secondaryColor}20`;
+                          }}
+                          onMouseOut={(e) => {
+                            e.currentTarget.style.backgroundColor =
+                              "transparent";
+                          }}
+                        >
+                          {skill}
+                        </Badge>
+                      )
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -239,10 +242,10 @@ const Experience = ({
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <Badge
-                      className="border-0"
                       style={{
-                        backgroundImage: `linear-gradient(to right, ${primaryColor}CC, ${primaryColor})`,
                         color: `${secondaryColor}`,
+                        borderColor: `${secondaryColor}30`,
+                        backgroundColor: "transparent",
                       }}
                     >
                       {t("experience.universal.duration")}
@@ -278,7 +281,7 @@ const Experience = ({
                     <div className="flex items-start space-x-3 group/item hover:bg-white/5 p-2 rounded-lg transition-all">
                       <CheckCircle
                         className="w-5 h-5 mt-0.5 flex-shrink-0"
-                        style={{ color: primaryColor }}
+                        style={{ color: `${secondaryColor}` }}
                       />{" "}
                       <p
                         className="text-sm leading-relaxed"
@@ -294,7 +297,7 @@ const Experience = ({
                     <div className="flex items-start space-x-3 group/item hover:bg-white/5 p-2 rounded-lg transition-all">
                       <TrendingUp
                         className="w-5 h-5 mt-0.5 flex-shrink-0"
-                        style={{ color: primaryColor }}
+                        style={{ color: `${secondaryColor}` }}
                       />{" "}
                       <p
                         className="text-sm leading-relaxed"
@@ -308,31 +311,28 @@ const Experience = ({
                     </div>
                   </div>{" "}
                   <div className="flex flex-wrap gap-2 mt-4">
-                    {[
-                      "UI/UX Design",
-                      "E-commerce",
-                      "User Analytics",
-                      "Heatmap Analysis",
-                      "Brand Identity",
-                    ].map((skill, index) => (
-                      <Badge
-                        key={index}
-                        variant="outline"
-                        className="text-xs transition-colors"
-                        style={{
-                          borderColor: `${primaryColor}30`,
-                          color: primaryColor,
-                        }}
-                        onMouseOver={(e) => {
-                          e.currentTarget.style.backgroundColor = `${primaryColor}20`;
-                        }}
-                        onMouseOut={(e) => {
-                          e.currentTarget.style.backgroundColor = "transparent";
-                        }}
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
+                    {["UI/UX Design", "Figma", "Design Thinking"].map(
+                      (skill, index) => (
+                        <Badge
+                          key={index}
+                          variant="outline"
+                          className="text-xs transition-colors"
+                          style={{
+                            borderColor: `${secondaryColor}30`,
+                            color: secondaryColor,
+                          }}
+                          onMouseOver={(e) => {
+                            e.currentTarget.style.backgroundColor = `${primaryColor}20`;
+                          }}
+                          onMouseOut={(e) => {
+                            e.currentTarget.style.backgroundColor =
+                              "transparent";
+                          }}
+                        >
+                          {skill}
+                        </Badge>
+                      )
+                    )}
                   </div>
                 </CardContent>
               </Card>

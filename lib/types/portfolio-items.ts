@@ -40,7 +40,7 @@ export const portfolioItems = [
 
   {
     id: 4,
-    title: "AI Argentinian Translator",
+    title: "CheTalk",
     categoryKey: "portfolio.items.chetalk.category",
     image: chetalkImage,
     descriptionKey: "portfolio.items.chetalk.description",

@@ -39,7 +39,6 @@ export const ProjectCard = ({
         fill
         className="object-cover transition-transform duration-300 group-hover:scale-105"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
     </div>
     <div className="p-6 relative">
       <h3

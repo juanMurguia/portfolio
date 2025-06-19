@@ -1,4 +1,16 @@
+import { profile } from "console";
+
 export const testimonials = [
+  {
+    id: 0,
+    name: "Luis Lanza",
+    image:
+      "https://media.licdn.com/dms/image/v2/D4D03AQFeteuFmCDkmQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1681947158651?e=1755734400&v=beta&t=dLHB6c4jjgrs5nHxRDpLpQ1kP5zxd991M4TDv0pZVeg",
+    testimonialKey: "testimonial.luis",
+    position: "Software Architect",
+    company: "Centro de e-Learning",
+    profileUrl: "https://www.linkedin.com/in/luis-lanza/",
+  },
   {
     id: 1,
     name: "Darelis Quintero",
