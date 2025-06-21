@@ -45,6 +45,9 @@ export default function CompanyPage() {
   const [loading, setLoading] = useState(true);
   const [isUnlocked, setIsUnlocked] = useState(false);
 
+  // Check if colors should be inverted
+  const isInverted = searchParams.get("colorMode") === "inverted";
+
   // Get the company slug from params
   const companySlug = params?.company as string;
 
@@ -75,11 +78,16 @@ export default function CompanyPage() {
 
     fetchData();
   }, [companySlug]);
-
   // Show loading state while fetching data
   if (loading) {
-    const primaryColor = companyData?.data?.primaryColor || "18181b";
-    const secondaryColor = companyData?.data?.secondaryColor || "fff";
+    let primaryColor = companyData?.data?.primaryColor || "18181b";
+    let secondaryColor = companyData?.data?.secondaryColor || "fff";
+
+    // If inverted mode is on, swap the colors
+    if (isInverted && companyData?.data) {
+      [primaryColor, secondaryColor] = [secondaryColor, primaryColor];
+    }
+
     const companyName = companyData?.data?.name || "";
     const logoUrl = companyData?.data?.logoUrl;
     return (
@@ -119,10 +127,18 @@ export default function CompanyPage() {
       </div>
     );
   }
-
   if (!companyData) {
     return null; // This will be redirected in the fetch function
   }
+
+  // Determine which colors to use based on the invert state
+  const primaryColor = isInverted
+    ? companyData.data.secondaryColor
+    : companyData.data.primaryColor;
+
+  const secondaryColor = isInverted
+    ? companyData.data.primaryColor
+    : companyData.data.secondaryColor;
 
   return (
     <div style={{ cursor: "none!important" }}>
@@ -135,46 +151,64 @@ export default function CompanyPage() {
         className={`flex-col px-8 gap-16 md:gap-36 flex items-center ${
           !isUnlocked ? "opacity-0" : "opacity-100"
         } transition-opacity duration-500`}
-        style={{ backgroundColor: `#${companyData.data.primaryColor}` }}
+        style={{ backgroundColor: `#${primaryColor}` }}
       >
+        {" "}
         <FloatingDockCompanies
           mobileClassName="fixed top-10 z-40"
           items={socialLinks}
           desktopClassName="fixed top-4 z-40"
-          primaryColor={`#${companyData.data.primaryColor}`}
-          secondaryColor={`#${companyData.data.secondaryColor}`}
+          primaryColor={`#${primaryColor}`}
+          secondaryColor={`#${secondaryColor}`}
         />
         {/* Hero Section */}
         <div className="flex flex-col md:flex-row justify-center w-full min-h-dvh items-center overflow-hidden gap-4 md:gap-8">
           <div className="max-w-4xl cursor-default w-full flex flex-col items-start md:items-center justify-center text-center gap-6 p-4">
-            <h4
-              className=" rounded-full text-md font-light shadow-none"
-              style={{
-                color: `#${companyData.data.secondaryColor}`,
-              }}
+            {" "}
+            <motion.h4
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+              className="rounded-full text-md font-light shadow-none"
+              style={{ color: `#${secondaryColor}` }}
             >
               {t("crafted.for")} {companyData.data.name}
-            </h4>
-            <h1
+            </motion.h4>
+            <motion.h1
+              initial={{
+                opacity: 0,
+                y: 60,
+                scale: 0.92,
+                letterSpacing: "-0.05em",
+              }}
+              animate={{ opacity: 1, y: 0, scale: 1, letterSpacing: "0em" }}
+              transition={{ duration: 1.1, ease: "easeOut", delay: 0.2 }}
               className="text-5xl text-left md:text-center md:text-6xl mb-2 font-bold"
-              style={{ color: `#${companyData.data.secondaryColor}` }}
+              style={{ color: `#${secondaryColor}` }}
             >
-              {companyData.data.heroTagline[locale as "en" | "es"]}
-            </h1>
-
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.2, delay: 0.5 }}
+                style={{ display: "inline-block" }}
+              >
+                {companyData.data.heroTagline[locale as "en" | "es"]}
+              </motion.span>
+            </motion.h1>
             <div className="flex flex-row items-center justify-start md:justify-center gap-4 w-full">
+              {" "}
               <CompanyCard
                 name="Juan Murguia"
-                role="Software Developer"
+                role={companyData.data.role || "Frontend Developer"}
                 image={ProfileImg.src}
-                primaryColor={companyData.data.primaryColor}
-                secondaryColor={companyData.data.secondaryColor}
+                primaryColor={primaryColor}
+                secondaryColor={secondaryColor}
                 isPersonal={true}
               />
               <span
                 className="text-2xl text-white font-extralight"
                 style={{
-                  color: `#${companyData.data.secondaryColor}`,
+                  color: `#${secondaryColor}`,
                 }}
               >
                 {"x"}
@@ -183,23 +217,23 @@ export default function CompanyPage() {
                 <CompanyCard
                   name={companyData.data.name}
                   image={companyData.data.logoUrl}
-                  primaryColor={companyData.data.primaryColor}
-                  secondaryColor={companyData.data.secondaryColor}
+                  primaryColor={primaryColor}
+                  secondaryColor={secondaryColor}
                   isPersonal={false}
                 />
               )}
             </div>
           </div>
         </div>
-
         {/* Why I'm a Good Fit Section */}
         <div
           id="why-fit"
           className="flex flex-col items-center max-w-4xl mx-auto min-h-[80dvh]"
         >
+          {" "}
           <motion.h2
             className="text-3xl md:text-4xl font-bold text-center mb-4"
-            style={{ color: `#${companyData.data.secondaryColor}` }}
+            style={{ color: `#${secondaryColor}` }}
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -208,7 +242,7 @@ export default function CompanyPage() {
           </motion.h2>
           <motion.h4
             className="text-md font-light mb-16"
-            style={{ color: `#${companyData.data.secondaryColor}` }}
+            style={{ color: `#${secondaryColor}` }}
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -217,7 +251,7 @@ export default function CompanyPage() {
           </motion.h4>
           <motion.p
             className="text-3xl md:text-xl text-center"
-            style={{ color: `#${companyData.data.secondaryColor}` }}
+            style={{ color: `#${secondaryColor}` }}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -225,32 +259,32 @@ export default function CompanyPage() {
             {companyData.data.whyFit?.[locale as "en" | "es"]}
           </motion.p>
         </div>
-
         {/* Experience Section */}
         <div
           id="experience"
           className="flex flex-col items-center gap-8 max-w-4xl mx-auto min-h-[80dvh]"
         >
+          {" "}
           <Experience
-            primaryColor={`#${companyData.data.primaryColor}`}
-            secondaryColor={`#${companyData.data.secondaryColor}`}
+            primaryColor={`#${primaryColor}`}
+            secondaryColor={`#${secondaryColor}`}
           />
         </div>
-
         {/* Project Highlights Section */}
         <div
           id="project-highlights"
           className="flex flex-col items-center gap-4 max-w-4xl mx-auto min-h-[80dvh]"
         >
+          {" "}
           <h2
             className="text-3xl md:text-4xl font-bold text-center"
-            style={{ color: `#${companyData.data.secondaryColor}` }}
+            style={{ color: `#${secondaryColor}` }}
           >
             {t("menu.portfolio")}
           </h2>
           <h4
             className="text-md font-light text-center mb-8"
-            style={{ color: `#${companyData.data.secondaryColor}` }}
+            style={{ color: `#${secondaryColor}` }}
           >
             {t("menu.portfolio.subtitle")}
           </h4>
@@ -264,45 +298,44 @@ export default function CompanyPage() {
                 technologies={item.technologies}
                 image={item.image}
                 liveUrl={item.liveUrl}
-                primaryColor={companyData.data.primaryColor}
-                secondaryColor={companyData.data.secondaryColor}
+                primaryColor={primaryColor}
+                secondaryColor={secondaryColor}
               />
             ))}
           </div>
         </div>
         {/* Testimonials Section - Conditionally Rendered */}
-
         <div
           id="testimonials"
           className="flex flex-col items-center gap-4 max-w-4xl mx-auto min-h-[90dvh]"
         >
+          {" "}
           <h2
             className="text-3xl md:text-4xl font-bold text-center"
-            style={{ color: `#${companyData.data.secondaryColor}` }}
+            style={{ color: `#${secondaryColor}` }}
           >
             {t("testimonials.title")}
           </h2>
           <h4
             className="text-md font-light text-center mb-8"
-            style={{ color: `#${companyData.data.secondaryColor}` }}
+            style={{ color: `#${secondaryColor}` }}
           >
             {t("testimonials.subtitle")}
           </h4>
           <TestimonialsCarousel
-            primaryColor={companyData.data.primaryColor}
-            secondaryColor={companyData.data.secondaryColor}
+            primaryColor={primaryColor}
+            secondaryColor={secondaryColor}
           />
         </div>
-
         {/* Thanks section */}
-
         <div
           id="thanks"
           className="flex flex-col items-center justify-center gap-4 max-w-4xl mx-auto min-h-[90dvh]"
         >
+          {" "}
           <motion.h2
             className="text-3xl md:text-4xl font-bold text-center"
-            style={{ color: `#${companyData.data.secondaryColor}` }}
+            style={{ color: `#${secondaryColor}` }}
             initial={{ scale: 0.7, rotate: -10, opacity: 0 }}
             whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
             transition={{
@@ -317,7 +350,7 @@ export default function CompanyPage() {
           </motion.h2>
           <motion.h2
             className="text-md font-light text-center mb-4"
-            style={{ color: `#${companyData.data.secondaryColor}` }}
+            style={{ color: `#${secondaryColor}` }}
             initial={{ x: 100, scale: 0.8, opacity: 0 }}
             whileInView={{ x: 0, scale: 1, opacity: 1 }}
             transition={{
@@ -331,24 +364,25 @@ export default function CompanyPage() {
             {t("cta.final.thanks")}
           </motion.h2>
           <div className="flex gap-4 z-10">
+            {" "}
             <a
               href="https://www.linkedin.com/in/juan-cruz-murguia/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:-translate-y-1 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#${companyData.data.secondaryColor}]"
+              className="px-4 py-2 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:-translate-y-1 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#${secondaryColor}]"
               style={{
-                backgroundColor: `#${companyData.data.secondaryColor}`,
-                color: `#${companyData.data.primaryColor}`,
+                backgroundColor: `#${secondaryColor}`,
+                color: `#${primaryColor}`,
               }}
             >
               <Linkedin size={20} className="inline" />
-            </a>
+            </a>{" "}
             <a
               href="mailto:juan.murguia@gmail.com"
-              className="px-4 py-2 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:-translate-y-1 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#${companyData.data.secondaryColor}]"
+              className="px-4 py-2 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:-translate-y-1 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#${secondaryColor}]"
               style={{
-                backgroundColor: `#${companyData.data.secondaryColor}`,
-                color: `#${companyData.data.primaryColor}`,
+                backgroundColor: `#${secondaryColor}`,
+                color: `#${primaryColor}`,
               }}
             >
               <Mail size={20} className="inline" />
@@ -356,7 +390,7 @@ export default function CompanyPage() {
           </div>
         </div>
       </div>
-      <ScrollProgressBar color={`#${companyData.data.secondaryColor}`} />
+      <ScrollProgressBar color={`#${secondaryColor}`} />
 
       {/* Lock screen overlay with AnimatePresence */}
       <AnimatePresence>
@@ -368,13 +402,13 @@ export default function CompanyPage() {
             transition={{ duration: 0.8, ease: "easeInOut" }}
             className="fixed inset-0 z-50"
             style={{
-              backgroundColor: `#${companyData.data.primaryColor}`,
+              backgroundColor: `#${primaryColor}`,
             }}
           >
             {" "}
             <PortfolioLock
-              primaryColor={companyData.data.secondaryColor}
-              secondaryColor={companyData.data.primaryColor}
+              primaryColor={secondaryColor}
+              secondaryColor={primaryColor}
               companyName={companyData.data.name}
               correctPassword=""
               onUnlock={() => setIsUnlocked(true)}

@@ -4,6 +4,7 @@ import { Fira_Code, Inter } from "next/font/google";
 import "./globals.css";
 import { LocaleProvider } from "@/lib/context/locale";
 import LanguageSwitcher from "@/components/language-switcher";
+import ColorSwitch from "@/components/color-switch";
 import CursorLight from "@/components/cursor-light";
 import PageBackground from "@/components/page-background";
 
@@ -63,8 +64,12 @@ export default function RootLayout({
           <PageBackground />
           <CursorLight />
           <div className="relative z-10">
-            <div className="fixed top-4 right-4" style={{ zIndex: 9999 }}>
+            <div
+              className="fixed top-4 right-4 flex items-center"
+              style={{ zIndex: 9999 }}
+            >
               <LanguageSwitcher />
+              <ColorSwitch />
             </div>
             {children}
           </div>

@@ -75,14 +75,13 @@ export const CompanyCard = ({
           >
             {name}
           </h3>
-          {role && (
-            <p
-              className="text-xs opacity-70 font-normal"
-              style={{ color: `#${secondaryColor}` }}
-            >
-              {role}
-            </p>
-          )}
+
+          <p
+            className="text-xs opacity-70 font-normal"
+            style={{ color: `#${secondaryColor}` }}
+          >
+            {role}
+          </p>
         </div>
       </motion.div>
     </motion.div>

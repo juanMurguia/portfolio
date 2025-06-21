@@ -33,6 +33,7 @@ export async function fetchCompanyData(slug: string) {
     return {
       slug: item.slug,
       name: item.name,
+      role: item.role || "",
       logoUrl:
         ((item.logo as any)?.fields?.file?.url &&
           ((item.logo as any)?.fields?.file?.url.startsWith("//")
