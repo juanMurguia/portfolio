@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import ProfileImg from "@/app/assets/profile.jpg";
 import {
@@ -44,6 +44,9 @@ export default function CompanyPage() {
   const [companyData, setCompanyData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [isUnlocked, setIsUnlocked] = useState(false);
+  // Mouse-follow effect for hero text
+  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
+  const heroRef = useRef<HTMLDivElement>(null);
 
   // Check if colors should be inverted
   const isInverted = searchParams.get("colorMode") === "inverted";
@@ -78,6 +81,29 @@ export default function CompanyPage() {
 
     fetchData();
   }, [companySlug]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!heroRef.current) return;
+      const rect = heroRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      // Calculate offset from center, clamp to [-1, 1]
+      const dx = Math.max(
+        -1,
+        Math.min(1, (e.clientX - centerX) / (rect.width / 2))
+      );
+      const dy = Math.max(
+        -1,
+        Math.min(1, (e.clientY - centerY) / (rect.height / 2))
+      );
+      // Map to max 10px movement
+      setMouseOffset({ x: dx * 10, y: dy * 10 });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   // Show loading state while fetching data
   if (loading) {
     let primaryColor = companyData?.data?.primaryColor || "18181b";
@@ -162,28 +188,36 @@ export default function CompanyPage() {
           secondaryColor={`#${secondaryColor}`}
         />
         {/* Hero Section */}
-        <div className="flex flex-col md:flex-row justify-center w-full min-h-dvh items-center overflow-hidden gap-4 md:gap-8">
+        <div
+          ref={heroRef}
+          className="flex flex-col md:flex-row justify-center w-full min-h-dvh items-center overflow-hidden gap-4 md:gap-8"
+        >
           <div className="max-w-4xl cursor-default w-full flex flex-col items-start md:items-center justify-center text-center gap-6 p-4">
             {" "}
             <motion.h4
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                x: mouseOffset.x * 0.5,
+                y: mouseOffset.y * 0.5,
+              }}
               transition={{ duration: 0.9, ease: "easeOut" }}
-              className="rounded-full text-md font-light shadow-none"
+              className="rounded-full text-md font-light shadow-none cursor-none"
               style={{ color: `#${secondaryColor}` }}
             >
               {t("crafted.for")} {companyData.data.name}
             </motion.h4>
             <motion.h1
-              initial={{
-                opacity: 0,
-                y: 60,
-                scale: 0.92,
-                letterSpacing: "-0.05em",
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                x: mouseOffset.x * 0.6,
+                y: mouseOffset.y * 0.6,
               }}
-              animate={{ opacity: 1, y: 0, scale: 1, letterSpacing: "0em" }}
-              transition={{ duration: 1.1, ease: "easeOut", delay: 0.2 }}
-              className="text-5xl text-left md:text-center md:text-6xl mb-2 font-bold"
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="text-5xl text-left md:text-center md:text-6xl mb-2 font-bold cursor-none"
               style={{ color: `#${secondaryColor}` }}
             >
               <motion.span
