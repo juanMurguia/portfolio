@@ -8,7 +8,7 @@ interface CompanyCursorLightProps {
 }
 
 export default function CompanyCursorLight({
-  color = "rgba(255,255,255,0.15)",
+  color = "rgba(255,255,255,0.05)",
   size = 400,
   opacity = 0.15,
 }: CompanyCursorLightProps) {

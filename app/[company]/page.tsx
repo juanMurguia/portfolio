@@ -22,6 +22,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IconBrandGmail, IconBrandTwitter } from "@tabler/icons-react";
 import { Linkedin, Github, Mail } from "lucide-react";
 import ScrollProgressBar from "@/components/companies/ScrollProgressBar";
+import { renderWithHighlight } from "@/lib/utils/render-with-highlight";
 const socialLinks = [
   {
     title: "LinkedIn",
@@ -169,7 +170,15 @@ export default function CompanyPage() {
     <div style={{ cursor: "none!important" }}>
       {/* Main content - always render this */}
       <div className={styles.grainOverlay} />
-      <CompanyCursorLight color={`rgba(255,255,255, 0.3)`} size={500} />
+      <CompanyCursorLight
+        color={`rgba(${parseInt(secondaryColor.slice(0, 2), 16)}, ${parseInt(
+          secondaryColor.slice(2, 4),
+          16
+        )}, ${parseInt(secondaryColor.slice(4, 6), 16)}, ${
+          isInverted ? "0.15" : "0.05"
+        })`}
+        size={500}
+      />
       <CustomCursor size={10} hoverSize={20} blendMode="difference" />
 
       <div
@@ -271,7 +280,13 @@ export default function CompanyPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {t("whyImAGreatFitFor")} {companyData.data.name}?
+            {renderWithHighlight(
+              t("whyImAGreatFitFor"),
+              "",
+              `#${secondaryColor}`,
+              `#${primaryColor}`
+            )}{" "}
+            {companyData.data.name}?
           </motion.h2>
           <motion.h4
             className="text-md font-light mb-16"

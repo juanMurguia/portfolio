@@ -42,12 +42,7 @@ const Experience = ({
         {/* Experience Items */}
         <div className="space-y-12">
           {/* Current Position - Bechsud */}
-          <div
-            className="relative flex flex-col md:flex-row items-start md:items-center"
-            style={{
-              backgroundColor: `${primaryColor}10`,
-            }}
-          >
+          <div className="relative flex flex-col md:flex-row items-start md:items-center">
             {/* Timeline Dot */}
             <div
               className="absolute left-6 md:left-1/2 w-4 h-4 rounded-full transform md:-translate-x-1/2 z-10 shadow-lg"
