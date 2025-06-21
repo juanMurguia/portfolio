@@ -1,8 +1,6 @@
 "use client";
 
-import React from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { Lightbulb } from "lucide-react";
 import { MoonIcon, SunIcon } from "lucide-react";
 export default function ColorSwitch() {
   const searchParams = useSearchParams();

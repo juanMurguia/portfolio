@@ -22,7 +22,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IconBrandGmail, IconBrandTwitter } from "@tabler/icons-react";
 import { Linkedin, Github, Mail } from "lucide-react";
 import ScrollProgressBar from "@/components/companies/ScrollProgressBar";
-
 const socialLinks = [
   {
     title: "LinkedIn",

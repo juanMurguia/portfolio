@@ -32,7 +32,7 @@
   "menu.contact": "Contact",
   "menu.download_cv": "Download CV",  
   "cardstack.tooltip": "Click to see next fact",
-  "whyImAGreatFitFor": "¿Why I'm a great fit for",
+ "whyImAGreatFitFor": "¿Why I’m a <highlight>great fit</highlight> for",
     "whyImAGreatFitFor.subtitle": "Let me tell you how I got here and what inspires me.",
 
   "lock.welcome": "Welcome to my portfolio!",

@@ -7,6 +7,7 @@ import LanguageSwitcher from "@/components/language-switcher";
 import ColorSwitch from "@/components/color-switch";
 import CursorLight from "@/components/cursor-light";
 import PageBackground from "@/components/page-background";
+import { Suspense } from "react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -69,7 +70,9 @@ export default function RootLayout({
               style={{ zIndex: 9999 }}
             >
               <LanguageSwitcher />
-              <ColorSwitch />
+              <Suspense fallback={null}>
+                <ColorSwitch />
+              </Suspense>
             </div>
             {children}
           </div>
